@@ -2,7 +2,7 @@
   "uuid": "%uuid%",
   "name": "TerraMCnet",
   "mainClass": "net.terramc.addon.Main",
-  "description": "Server-Support for TerraMC.net",
+  "description": "This addon offers you advanced informations on TerraMC.net. For example it will show you your current nickname, gamerank and much more.",
   "version": 1.8,
   "author": "MisterCore",
   "category": 3,
