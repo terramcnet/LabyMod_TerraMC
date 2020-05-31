@@ -1,0 +1,10 @@
+{
+  "uuid": "%uuid%",
+  "name": "TerraMCnet",
+  "mainClass": "net.terramc.addon.Main",
+  "description": "Server-Support for TerraMC.net",
+  "version": 1.8,
+  "author": "MisterCore",
+  "category": 3,
+  "icon": "http://www.terramc.net/labymod/icons/TerraLogo.png"
+}
