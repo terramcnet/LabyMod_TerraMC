@@ -21,6 +21,20 @@ public class ServerMessageListener implements ServerMessageEvent {
             if(object.has("globalCoins")) {
                 TerraMCnetServer.setCoins(object.get("globalCoins").getAsInt());
             }
+
+            if(object.has("playerRank")) {
+                TerraMCnetServer.setRank(object.get("playerRank").getAsString());
+            }
+            if(object.has("openReports")) {
+                TerraMCnetServer.setOpenReports(object.get("openReports").getAsInt());
+            }
+            if(object.has("vanish")) {
+                TerraMCnetServer.setVanish(object.get("vanish").getAsBoolean());
+            }
+            if(object.has("autoVanish")) {
+                TerraMCnetServer.setAutoVanish(object.get("autoVanish").getAsBoolean());
+            }
+
         }
     }
 }

@@ -18,14 +18,32 @@ import java.util.List;
 
 public class TerraMCnetServer extends Server {
 
-    private boolean displayNickname;
+    // Normal functions
+
     private boolean filterPrivateMessages;
     private boolean displayGameRank;
     private boolean displayCoins;
 
-    private static String nickName = null;
     private static String gameRank;
     private static int coins;
+
+    // VIP functions
+
+    private boolean displayNickname;
+
+    private static String nickName = null;
+
+    // Staff functions
+
+    private boolean displayReports;
+    private boolean displayVanish;
+    private boolean displayAutoVanish;
+
+    private static int openReports = 0;
+
+    private static String rank = null;
+    private static boolean vanish;
+    private static boolean autoVanish;
 
     TerraMCnetServer() {
         super("terramc", "terramc.net");
@@ -45,6 +63,20 @@ public class TerraMCnetServer extends Server {
 
             if(this.displayCoins) {
                 lines.add(new Server.DisplayLine("GCoins",Collections.singletonList(ColoredTextModule.Text.getText(String.valueOf(coins)))));
+            }
+
+            if((openReports > 0) & (Main.isStaff()) & (this.displayReports)) {
+                lines.add(new Server.DisplayLine("Offene Reports", Collections.singletonList(ColoredTextModule.Text.getText(String.valueOf(openReports)))));
+            }
+
+            if(this.displayVanish & Main.isStaff()) {
+                String status = vanish ? "§aAktiv §8[§a✔§8]" : "§cDeaktiviert §8[§c✖§8]";
+                lines.add(new Server.DisplayLine("Vanish", Collections.singletonList(ColoredTextModule.Text.getText(status))));
+            }
+
+            if(this.displayAutoVanish & Main.isStaff()) {
+                String status = autoVanish ? "§aAktiv §8[§a✔§8]" : "§cDeaktiviert §8[§c✖§8]";
+                lines.add(new Server.DisplayLine("Auto. Vanish", Collections.singletonList(ColoredTextModule.Text.getText(status))));
             }
 
         } catch (Exception ex) {
@@ -94,6 +126,10 @@ public class TerraMCnetServer extends Server {
         this.filterPrivateMessages = getBooleanAttribute("filterPrivateMessages", false);
         this.displayGameRank = getBooleanAttribute("displayGameRank", false);
         this.displayCoins = getBooleanAttribute("displayCoins", false);
+
+        this.displayReports = getBooleanAttribute("displayReports", false);
+        this.displayVanish = getBooleanAttribute("displayVanish", false);
+        this.displayAutoVanish = getBooleanAttribute("displayAutoVanish", false);
     }
 
     @Override
@@ -105,6 +141,11 @@ public class TerraMCnetServer extends Server {
 
         list.add(new HeaderElement("§8•● §5VIP Funktionen §8●•"));
         list.add(new BooleanElement("§7•§8● §fNick anzeigen", this, new ControlElement.IconData(Material.NAME_TAG), "displayNickname"));
+
+        list.add(new HeaderElement("§8•● §aTeam Funktionen §8●•"));
+        list.add(new BooleanElement("§7•§8● §fReports anzeigen", this, new ControlElement.IconData(Material.REDSTONE), "displayReports"));
+        list.add(new BooleanElement("§7•§8● §fVanish Status", this, new ControlElement.IconData(Material.QUARTZ), "displayVanish"));
+        list.add(new BooleanElement("§7•§8● §fAuto. Vanish Status", this, new ControlElement.IconData(Material.QUARTZ), "displayAutoVanish"));
     }
 
     static void resetValues() {
@@ -118,6 +159,26 @@ public class TerraMCnetServer extends Server {
 
     public static void setCoins(int value) {
         coins = value;
+    }
+
+    static void setOpenReports(int value) {
+        openReports = value;
+    }
+
+    static void setRank(String value) {
+        rank = value;
+    }
+
+    static String getRank() {
+        return rank;
+    }
+
+    public static void setVanish(boolean value) {
+        vanish = value;
+    }
+
+    public static void setAutoVanish(boolean value) {
+        autoVanish = value;
     }
 
 }
