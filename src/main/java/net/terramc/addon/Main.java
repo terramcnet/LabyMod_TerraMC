@@ -77,7 +77,7 @@ public class Main extends LabyModAddon {
             }
         }, displayGameRank));
 
-        list.add(new BooleanElement("§7•§8● §fCoins anzeigen", new ControlElement.IconData(Material.SIGN), new Consumer<Boolean>() {
+        list.add(new BooleanElement("§7•§8● §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), new Consumer<Boolean>() {
             @Override
             public void accept(Boolean status) {
                 displayCoins = status;
@@ -88,7 +88,7 @@ public class Main extends LabyModAddon {
 
         list.add(new HeaderElement("§8•● §5VIP Funktionen §8●•"));
 
-        list.add(new BooleanElement("§7•§8● §fNick anzeigen", new ControlElement.IconData(Material.SIGN), new Consumer<Boolean>() {
+        list.add(new BooleanElement("§7•§8● §fNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), new Consumer<Boolean>() {
             @Override
             public void accept(Boolean status) {
                 displayNickName = status;
