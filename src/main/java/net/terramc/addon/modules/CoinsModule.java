@@ -41,7 +41,7 @@ public class CoinsModule extends SimpleModule {
 
     @Override
     public String getSettingName() {
-        return "CCoins";
+        return "GCoins";
     }
 
     @Override
