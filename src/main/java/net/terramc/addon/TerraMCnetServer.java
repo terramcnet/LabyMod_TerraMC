@@ -97,4 +97,15 @@ public class TerraMCnetServer extends Server {
     public static String getNickName() {
         return nickName;
     }
+
+    public static void checkUpdate(String version) {
+        if(!version.equals(Main.addonVersion)) {
+            LabyMod labyMod = LabyMod.getInstance();
+            labyMod.displayMessageInChat("§a§lTerraMC §7§lLabyMod-Addon");
+            labyMod.displayMessageInChat("§7Es ist eine neue Version §8[§e" + version + "§8] §7verfügbar!");
+            labyMod.displayMessageInChat("");
+            labyMod.displayMessageInChat("§7Du kannst sie dir unter §ehttps://terramc.net/laby §7herunterladen.");
+        }
+    }
+
 }

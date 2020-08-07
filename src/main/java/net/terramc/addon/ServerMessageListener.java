@@ -21,6 +21,9 @@ public class ServerMessageListener implements ServerMessageEvent {
             if(object.has("globalCoins")) {
                 TerraMCnetServer.setCoins(object.get("globalCoins").getAsInt());
             }
+            if(object.has("addonVersion")) {
+                TerraMCnetServer.checkUpdate(object.get("addonVersion").getAsString());
+            }
         }
     }
 }

@@ -29,6 +29,8 @@ public class Main extends LabyModAddon {
 
     public static boolean enabled;
 
+    public static String addonVersion = "2.2";
+
     @Override
     public void onEnable() {
         ModuleCategoryRegistry.loadCategory(TERRAMCNET_CATEGORY = new ModuleCategory("TerraMC", true, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
