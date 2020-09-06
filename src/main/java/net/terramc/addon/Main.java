@@ -29,7 +29,7 @@ public class Main extends LabyModAddon {
 
     public static boolean enabled;
 
-    public static String addonVersion = "2.2";
+    public static String addonVersion = "2.3";
 
     @Override
     public void onEnable() {
