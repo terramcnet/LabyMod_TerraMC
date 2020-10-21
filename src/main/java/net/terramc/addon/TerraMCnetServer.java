@@ -40,11 +40,11 @@ public class TerraMCnetServer extends Server {
     public ChatDisplayAction handleChatMessage(String clean, String formatted) {
         try {
             if((Main.filterPrivateMessages) & (clean.toLowerCase().contains(LabyMod.getInstance().getPlayerName().toLowerCase())) &
-                    (clean.startsWith("•● Freunde ┃ ") & (clean.contains(" » ")))) {
+                    (clean.startsWith("▎▏ Freunde » ") & (clean.contains(" » ")))) {
                 return ChatDisplayAction.SWAP;
             }
 
-            String nickPrefix = "•● Nick ┃ ";
+            String nickPrefix = "▎▏ Nick » ";
             if(clean.startsWith(nickPrefix + "Du spielst nun als: ")) {
                 nickName = clean.replace(nickPrefix + "Du spielst nun als: ", "");
             }
