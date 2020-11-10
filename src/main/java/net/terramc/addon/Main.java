@@ -15,6 +15,7 @@ import net.terramc.addon.modules.CoinsModule;
 import net.terramc.addon.modules.GameRankModule;
 import net.terramc.addon.modules.NickModule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends LabyModAddon {
@@ -29,7 +30,8 @@ public class Main extends LabyModAddon {
 
     public static boolean enabled;
 
-    public static String addonVersion = "2.4";
+    public static String addonVersion = "2.5";
+    public static List<String> versionChanges = new ArrayList<String>();
 
     @Override
     public void onEnable() {
@@ -47,6 +49,9 @@ public class Main extends LabyModAddon {
                 enabled = serverData.getIp().equalsIgnoreCase("terramc.net");
             }
         });
+
+        versionChanges.add("§eLabyMod-API Update");
+
     }
 
     @Override

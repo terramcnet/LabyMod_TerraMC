@@ -104,6 +104,13 @@ public class TerraMCnetServer extends Server {
             labyMod.displayMessageInChat("§a§lTerraMC §7§lLabyMod-Addon");
             labyMod.displayMessageInChat("§7Es ist eine neue Version §8[§e" + version + "§8] §7verfügbar!");
             labyMod.displayMessageInChat("");
+            if(Main.versionChanges.size() > 0) {
+                labyMod.displayMessageInChat("§7Änderungen§8:");
+                for(String entry : Main.versionChanges) {
+                    labyMod.displayMessageInChat("§8» §7" + entry);
+                }
+                labyMod.displayMessageInChat("");
+            }
             labyMod.displayMessageInChat("§7Du kannst sie dir unter §ehttps://terramc.net/laby §7herunterladen.");
         }
     }
