@@ -24,6 +24,12 @@ public class ServerMessageListener implements ServerMessageEvent {
             if(object.has("addonVersion")) {
                 TerraMCnetServer.checkUpdate(object.get("addonVersion").getAsString());
             }
+            if(object.has("playerRank")) {
+                TerraMCnetServer.setRank(object.get("playerRank").getAsString());
+            }
+            if(object.has("joinedRound")) {
+                TerraMCnetServer.setInRound(object.get("joinedRound").getAsBoolean());
+            }
         }
     }
 }

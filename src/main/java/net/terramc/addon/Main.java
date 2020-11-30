@@ -26,11 +26,13 @@ public class Main extends LabyModAddon {
     public static boolean displayNickName;
     public static boolean displayCoins;
 
+    static boolean autoGGEnabled;
+
     public static ModuleCategory TERRAMCNET_CATEGORY;
 
     public static boolean enabled;
 
-    public static String addonVersion = "2.5";
+    public static String addonVersion = "2.6";
     public static List<String> versionChanges = new ArrayList<String>();
 
     @Override
@@ -50,7 +52,7 @@ public class Main extends LabyModAddon {
             }
         });
 
-        versionChanges.add("§eLabyMod-API Update");
+        versionChanges.add("§eAutoGG §8[§6PREMIUM Funktion§8] §ehinzugefügt");
 
     }
 
@@ -60,13 +62,14 @@ public class Main extends LabyModAddon {
         displayGameRank = !this.getConfig().has("displayGameRank") || this.getConfig().get("displayGameRank").getAsBoolean();
         displayCoins = !this.getConfig().has("displayCoins") || this.getConfig().get("displayCoins").getAsBoolean();
         displayNickName = !this.getConfig().has("displayNickName") || this.getConfig().get("displayNickName").getAsBoolean();
+        autoGGEnabled = !this.getConfig().has("autoGG") || this.getConfig().get("autoGG").getAsBoolean();
     }
 
     @Override
     protected void fillSettings(List<SettingsElement> list) {
-        list.add(new HeaderElement("§8•● §7Allgemeine Funktionen §8●•"));
+        list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §7Allgemeine Funktionen"));
 
-        list.add(new BooleanElement("§7•§8● §fPrivate Nachrichten filtern", new ControlElement.IconData(Material.SIGN), new Consumer<Boolean>() {
+        list.add(new BooleanElement("§8» §fPrivate Nachrichten filtern", new ControlElement.IconData(Material.SIGN), new Consumer<Boolean>() {
             @Override
             public void accept(Boolean status) {
                 filterPrivateMessages = status;
@@ -75,7 +78,7 @@ public class Main extends LabyModAddon {
             }
         }, filterPrivateMessages));
 
-        list.add(new BooleanElement("§7•§8● §fGame-Rang anzeigen", new ControlElement.IconData(Material.DIAMOND_SWORD), new Consumer<Boolean>() {
+        list.add(new BooleanElement("§8» §fGame-Rang anzeigen", new ControlElement.IconData(Material.DIAMOND_SWORD), new Consumer<Boolean>() {
             @Override
             public void accept(Boolean status) {
                 displayGameRank = status;
@@ -84,7 +87,7 @@ public class Main extends LabyModAddon {
             }
         }, displayGameRank));
 
-        list.add(new BooleanElement("§7•§8● §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), new Consumer<Boolean>() {
+        list.add(new BooleanElement("§8» §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), new Consumer<Boolean>() {
             @Override
             public void accept(Boolean status) {
                 displayCoins = status;
@@ -93,9 +96,20 @@ public class Main extends LabyModAddon {
             }
         }, displayCoins));
 
-        list.add(new HeaderElement("§8•● §5VIP Funktionen §8●•"));
+        list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §6Premium Funktionen"));
 
-        list.add(new BooleanElement("§7•§8● §fNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), new Consumer<Boolean>() {
+        list.add(new BooleanElement("§8» §eAutoGG", new ControlElement.IconData(Material.NETHER_STAR), new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean status) {
+                autoGGEnabled = status;
+                Main.this.getConfig().addProperty("autoGG", status);
+                Main.this.saveConfig();
+            }
+        }, autoGGEnabled));
+
+        list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §5VIP Funktionen"));
+
+        list.add(new BooleanElement("§8» §fNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), new Consumer<Boolean>() {
             @Override
             public void accept(Boolean status) {
                 displayNickName = status;
@@ -104,6 +118,25 @@ public class Main extends LabyModAddon {
             }
         }, displayNickName));
 
+    }
+
+    public static boolean isStaff() {
+        String rank = TerraMCnetServer.getRank();
+        if(rank == null) {
+            return false;
+        }
+        return rank.equals("Inhaber") || rank.equals("Admin") || rank.equals("SrDev") || rank.equals("Dev") ||
+                rank.equals("Content") || rank.equals("SrMod") || rank.equals("Mod") || rank.equals("SrSup") ||
+                rank.equals("Sup") || rank.equals("Designer") ||rank.equals("Builder");
+    }
+
+    public static boolean isPremium() {
+        String rank = TerraMCnetServer.getRank();
+        if(rank == null) {
+            return false;
+        }
+        return rank.equals("Premium") || rank.equals("Hydra") || rank.equals("Terra") || rank.equals("Premium+") ||
+                rank.equals("YouTuber") || rank.equals("YouTuber+");
     }
 
 }

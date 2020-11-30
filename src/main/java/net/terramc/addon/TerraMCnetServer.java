@@ -5,12 +5,15 @@ import net.labymod.main.LabyMod;
 import net.labymod.servermanager.ChatDisplayAction;
 import net.labymod.servermanager.Server;
 import net.labymod.settings.elements.SettingsElement;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.PacketBuffer;
 
 import java.util.List;
 
 public class TerraMCnetServer extends Server {
+
+    private static String rank = "Spieler";
 
     // Normal functions
 
@@ -20,6 +23,11 @@ public class TerraMCnetServer extends Server {
     // VIP functions
 
     private static String nickName = null;
+
+    //
+
+    private static boolean inRound = false;
+    private static boolean ggSent = false;
 
     TerraMCnetServer() {
         super("terramc", "terramc.net");
@@ -55,6 +63,20 @@ public class TerraMCnetServer extends Server {
                     clean.startsWith(nickPrefix + "Your nickname has been reset.")) {
                 nickName = null;
             }
+
+            if(formatted.contains("§7Die Runde wurde beendet.") || formatted.contains("§7The round ended.")) {
+                if(Main.autoGGEnabled & (Main.isStaff() || Main.isPremium())) {
+                    if(inRound & !ggSent) {
+                        ggSent = true;
+                        if(Main.isStaff() || getRank().equals("Terra") || getRank().equals("YouTuber+")) {
+                            Minecraft.getMinecraft().thePlayer.sendChatMessage("&8&k|&7&k|&r &eGG &7&k|&8&k|");
+                        } else {
+                            Minecraft.getMinecraft().thePlayer.sendChatMessage("GG");
+                        }
+                    }
+                }
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -76,6 +98,8 @@ public class TerraMCnetServer extends Server {
     static void resetValues() {
         nickName = null;
         gameRank = null;
+        inRound = false;
+        ggSent = false;
     }
 
     static void setGameRank(String value) {
@@ -96,6 +120,18 @@ public class TerraMCnetServer extends Server {
 
     public static String getNickName() {
         return nickName;
+    }
+
+    public static String getRank() {
+        return rank;
+    }
+
+    public static void setRank(String value) {
+        rank = value;
+    }
+
+    public static void setInRound(boolean status) {
+        inRound = status;
     }
 
     public static void checkUpdate(String version) {
