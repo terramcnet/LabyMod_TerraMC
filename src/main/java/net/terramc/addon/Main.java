@@ -109,7 +109,7 @@ public class Main extends LabyModAddon {
 
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §5VIP Funktionen"));
 
-        list.add(new BooleanElement("§8» §fNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), new Consumer<Boolean>() {
+        list.add(new BooleanElement("§8» §dNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), new Consumer<Boolean>() {
             @Override
             public void accept(Boolean status) {
                 displayNickName = status;
