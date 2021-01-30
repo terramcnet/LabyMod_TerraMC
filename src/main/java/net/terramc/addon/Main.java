@@ -52,7 +52,7 @@ public class Main extends LabyModAddon {
             }
         });
 
-        versionChanges.add("§eAutoGG §8[§6PREMIUM Funktion§8] §ehinzugefügt");
+        versionChanges.add("&eBugfixes");
 
     }
 

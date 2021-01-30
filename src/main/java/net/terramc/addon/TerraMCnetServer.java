@@ -68,10 +68,14 @@ public class TerraMCnetServer extends Server {
                 if(Main.autoGGEnabled & (Main.isStaff() || Main.isPremium())) {
                     if(inRound & !ggSent) {
                         ggSent = true;
-                        if(Main.isStaff() || getRank().equals("Terra") || getRank().equals("YouTuber+")) {
-                            Minecraft.getMinecraft().thePlayer.sendChatMessage("&8&k|&7&k|&r &eGG &7&k|&8&k|");
-                        } else {
+                        if(nickName != null) {
                             Minecraft.getMinecraft().thePlayer.sendChatMessage("GG");
+                        } else {
+                            if(Main.isStaff() || getRank().equals("Terra") || getRank().equals("YouTuber+")) {
+                                Minecraft.getMinecraft().thePlayer.sendChatMessage("&8&k|&7&k|&r &eGG &7&k|&8&k|");
+                            } else {
+                                Minecraft.getMinecraft().thePlayer.sendChatMessage("GG");
+                            }
                         }
                     }
                 }
@@ -141,7 +145,7 @@ public class TerraMCnetServer extends Server {
             labyMod.displayMessageInChat("§7Es ist eine neue Version §8[§e" + version + "§8] §7verfügbar!");
             labyMod.displayMessageInChat("");
             if(Main.versionChanges.size() > 0) {
-                labyMod.displayMessageInChat("§7Änderungen§8:");
+                labyMod.displayMessageInChat("§7Was ist neu in der Version?§8:");
                 for(String entry : Main.versionChanges) {
                     labyMod.displayMessageInChat("§8» §7" + entry);
                 }
