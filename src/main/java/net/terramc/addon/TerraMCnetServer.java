@@ -8,7 +8,9 @@ import net.labymod.settings.elements.SettingsElement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.PacketBuffer;
+import net.terramc.addon.utils.ReportData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TerraMCnetServer extends Server {
@@ -17,7 +19,7 @@ public class TerraMCnetServer extends Server {
 
     // Normal functions
 
-    private static String gameRank;
+    private static String gameRank = null;
     private static int coins;
 
     // VIP functions
@@ -28,6 +30,10 @@ public class TerraMCnetServer extends Server {
 
     private static boolean inRound = false;
     private static boolean ggSent = false;
+
+    // Staff functions
+
+    private static List<ReportData> reports = new ArrayList<>();
 
     TerraMCnetServer() {
         super("terramc", "terramc.net");
@@ -99,14 +105,14 @@ public class TerraMCnetServer extends Server {
     @Override
     public void fillSubSettings(List<SettingsElement> list) {}
 
-    static void resetValues() {
+    public static void resetValues() {
         nickName = null;
         gameRank = null;
         inRound = false;
         ggSent = false;
     }
 
-    static void setGameRank(String value) {
+    public static void setGameRank(String value) {
         gameRank = value;
     }
 
@@ -136,6 +142,10 @@ public class TerraMCnetServer extends Server {
 
     public static void setInRound(boolean status) {
         inRound = status;
+    }
+
+    public static List<ReportData> getReports() {
+        return reports;
     }
 
     public static void checkUpdate(String version) {

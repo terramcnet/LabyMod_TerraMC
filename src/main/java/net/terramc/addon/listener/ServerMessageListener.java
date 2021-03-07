@@ -1,8 +1,10 @@
-package net.terramc.addon;
+package net.terramc.addon.listener;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.labymod.api.events.ServerMessageEvent;
+import net.terramc.addon.TerraMCnetServer;
+import net.terramc.addon.utils.ReportData;
 
 public class ServerMessageListener implements ServerMessageEvent {
 
@@ -29,6 +31,17 @@ public class ServerMessageListener implements ServerMessageEvent {
             }
             if(object.has("joinedRound")) {
                 TerraMCnetServer.setInRound(object.get("joinedRound").getAsBoolean());
+            }
+            if(object.has("reportAddonDataAdd")) {
+                TerraMCnetServer.getReports().add(ReportData.fromString(object.get("reportAddonDataAdd").getAsString()));
+            }
+            if(object.has("reportAddonDataDel")) {
+                int id = object.get("reportAddonDataDel").getAsInt();
+                TerraMCnetServer.getReports().forEach(reportData -> {
+                    if(reportData.getId() == id) {
+                        TerraMCnetServer.getReports().remove(reportData);
+                    }
+                });
             }
         }
     }

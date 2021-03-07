@@ -3,17 +3,15 @@ package net.terramc.addon;
 import net.labymod.api.LabyModAddon;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
-import net.labymod.settings.elements.BooleanElement;
-import net.labymod.settings.elements.ControlElement;
-import net.labymod.settings.elements.HeaderElement;
-import net.labymod.settings.elements.SettingsElement;
-import net.labymod.utils.Consumer;
+import net.labymod.settings.elements.*;
 import net.labymod.utils.Material;
-import net.labymod.utils.ServerData;
 import net.minecraft.util.ResourceLocation;
+import net.terramc.addon.listener.KeyboardListener;
+import net.terramc.addon.listener.ServerMessageListener;
 import net.terramc.addon.modules.CoinsModule;
 import net.terramc.addon.modules.GameRankModule;
 import net.terramc.addon.modules.NickModule;
+import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +28,8 @@ public class Main extends LabyModAddon {
 
     public static ModuleCategory TERRAMCNET_CATEGORY;
 
+    private static int guiKey = 0;
+
     public static boolean enabled;
 
     public static String addonVersion = "2.6";
@@ -45,14 +45,13 @@ public class Main extends LabyModAddon {
         this.getApi().registerModule(new GameRankModule());
         this.getApi().registerModule(new NickModule());
 
-        this.getApi().getEventManager().registerOnJoin(new Consumer<ServerData>() {
-            @Override
-            public void accept(ServerData serverData) {
-                enabled = serverData.getIp().equalsIgnoreCase("terramc.net");
-            }
-        });
+        this.getApi().registerForgeListener(new KeyboardListener());
 
-        versionChanges.add("&eBugfixes");
+        //Tabs.getTabUpdateListener().add(map -> map.put("TerraMC", new Class[]{TerraGUI.class}));
+
+        this.getApi().getEventManager().registerOnJoin(serverData -> enabled = serverData.getIp().equalsIgnoreCase("terramc.net"));
+
+        versionChanges.add("&aGUI hinzugefügt");
 
     }
 
@@ -63,61 +62,67 @@ public class Main extends LabyModAddon {
         displayCoins = !this.getConfig().has("displayCoins") || this.getConfig().get("displayCoins").getAsBoolean();
         displayNickName = !this.getConfig().has("displayNickName") || this.getConfig().get("displayNickName").getAsBoolean();
         autoGGEnabled = !this.getConfig().has("autoGG") || this.getConfig().get("autoGG").getAsBoolean();
+        guiKey = (this.getConfig().has("guiKey") ? this.getConfig().get("guiKey").getAsInt() : Keyboard.KEY_MULTIPLY);
     }
 
     @Override
     protected void fillSettings(List<SettingsElement> list) {
+
+        list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §7GUI"));
+
+        list.add(new KeyElement("§8» §fTerra-GUI", new ControlElement.IconData(new ResourceLocation("labymod/textures/settings/category/ingame_gui.png")), guiKey, integer -> {
+            if(integer == -1) {
+                return;
+            }
+            guiKey = integer;
+            Main.this.getConfig().addProperty("guiKey", integer);
+            Main.this.saveConfig();
+        }));
+
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §7Allgemeine Funktionen"));
 
-        list.add(new BooleanElement("§8» §fPrivate Nachrichten filtern", new ControlElement.IconData(Material.SIGN), new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean status) {
-                filterPrivateMessages = status;
-                Main.this.getConfig().addProperty("filterPrivateMessages", status);
-                Main.this.saveConfig();
-            }
+        list.add(new BooleanElement("§8» §fPrivate Nachrichten filtern", new ControlElement.IconData(Material.SIGN), status -> {
+            filterPrivateMessages = status;
+            Main.this.getConfig().addProperty("filterPrivateMessages", status);
+            Main.this.saveConfig();
         }, filterPrivateMessages));
 
-        list.add(new BooleanElement("§8» §fGame-Rang anzeigen", new ControlElement.IconData(Material.DIAMOND_SWORD), new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean status) {
-                displayGameRank = status;
-                Main.this.getConfig().addProperty("displayGameRank", status);
-                Main.this.saveConfig();
-            }
+        list.add(new BooleanElement("§8» §fGame-Rang anzeigen", new ControlElement.IconData(Material.DIAMOND_SWORD), status -> {
+            displayGameRank = status;
+            Main.this.getConfig().addProperty("displayGameRank", status);
+            Main.this.saveConfig();
         }, displayGameRank));
 
-        list.add(new BooleanElement("§8» §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean status) {
-                displayCoins = status;
-                Main.this.getConfig().addProperty("displayCoins", status);
-                Main.this.saveConfig();
-            }
+        list.add(new BooleanElement("§8» §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), status -> {
+            displayCoins = status;
+            Main.this.getConfig().addProperty("displayCoins", status);
+            Main.this.saveConfig();
         }, displayCoins));
 
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §6Premium Funktionen"));
 
-        list.add(new BooleanElement("§8» §eAutoGG", new ControlElement.IconData(Material.NETHER_STAR), new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean status) {
-                autoGGEnabled = status;
-                Main.this.getConfig().addProperty("autoGG", status);
-                Main.this.saveConfig();
-            }
+        list.add(new BooleanElement("§8» §eAutoGG", new ControlElement.IconData(Material.NETHER_STAR), status -> {
+            autoGGEnabled = status;
+            Main.this.getConfig().addProperty("autoGG", status);
+            Main.this.saveConfig();
         }, autoGGEnabled));
 
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §5VIP Funktionen"));
 
-        list.add(new BooleanElement("§8» §dNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean status) {
-                displayNickName = status;
-                Main.this.getConfig().addProperty("displayNickName", status);
-                Main.this.saveConfig();
-            }
+        list.add(new BooleanElement("§8» §dNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), status -> {
+            displayNickName = status;
+            Main.this.getConfig().addProperty("displayNickName", status);
+            Main.this.saveConfig();
         }, displayNickName));
 
+    }
+
+    public static boolean isAdmin() {
+        String rank = TerraMCnetServer.getRank();
+        if(rank == null) {
+            return false;
+        }
+        return rank.equals("Inhaber") || rank.equals("Admin");
     }
 
     public static boolean isStaff() {
@@ -139,4 +144,7 @@ public class Main extends LabyModAddon {
                 rank.equals("YouTuber") || rank.equals("YouTuber+");
     }
 
+    public static int getGuiKey() {
+        return guiKey;
+    }
 }
