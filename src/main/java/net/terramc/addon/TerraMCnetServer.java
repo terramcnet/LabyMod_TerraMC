@@ -22,6 +22,9 @@ public class TerraMCnetServer extends Server {
     private static String gameRank = null;
     private static int coins;
 
+    private static String onlineTime = null;
+    private static int joins = 0;
+
     // VIP functions
 
     private static String nickName = null;
@@ -35,10 +38,11 @@ public class TerraMCnetServer extends Server {
 
     private static List<ReportData> reports = new ArrayList<>();
 
+    //
+
     TerraMCnetServer() {
         super("terramc", "terramc.net");
     }
-
 
     @Override
     public void addModuleLines(List<DisplayLine> lines) {
@@ -146,6 +150,22 @@ public class TerraMCnetServer extends Server {
 
     public static List<ReportData> getReports() {
         return reports;
+    }
+
+    public static String getOnlineTime() {
+        return onlineTime;
+    }
+
+    public static void setOnlineTime(String value) {
+        onlineTime = value;
+    }
+
+    public static int getJoins() {
+        return joins;
+    }
+
+    public static void setJoins(int value) {
+        joins = value;
     }
 
     public static void checkUpdate(String version) {

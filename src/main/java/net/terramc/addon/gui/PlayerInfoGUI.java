@@ -2,7 +2,6 @@ package net.terramc.addon.gui;
 
 import net.labymod.main.LabyMod;
 import net.labymod.utils.DrawUtils;
-import net.labymod.utils.ModColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -44,7 +43,7 @@ public class PlayerInfoGUI extends GuiScreen {
             return;
         }
 
-        drawUtils.drawString(ModColor.RED + "§8« §6Deine Übersicht §8»", x, 20, 1.5);
+        drawUtils.drawString("§8« §6Deine Übersicht §8»", x, 20, 1.5);
 
         // Rank
         drawUtils.drawItem(new ItemStack(Item.getItemById(315)), x -100, 35, "");
@@ -59,8 +58,17 @@ public class PlayerInfoGUI extends GuiScreen {
         drawUtils.drawItem(new ItemStack(Item.getItemById(421)), x -100, 75, "");
         drawUtils.drawString("§7Nickname §8» " + (TerraMCnetServer.getNickName() != null ? "§d" + TerraMCnetServer.getNickName() : "§cNicht genickt"), x -75, 79);
 
+        // GameRank
         drawUtils.drawItem(new ItemStack(Item.getItemById(399)), x -100, 95, "");
         drawUtils.drawString("§7GameRank §8» " + (TerraMCnetServer.getGameRank() == null ? "§cNicht in einer Runde" : "§e" + TerraMCnetServer.getGameRank()), x -75, 99);
+
+        // OnlineTime
+        drawUtils.drawItem(new ItemStack(Item.getItemById(347)), x -100, 115, "");
+        drawUtils.drawString("§7Online-Zeit §8» " + (TerraMCnetServer.getOnlineTime() != null ? TerraMCnetServer.getOnlineTime() : "§cKeine Zeit erfasst"), x -75, 119);
+
+        // Joins
+        drawUtils.drawItem(new ItemStack(Item.getItemById(381)), x -100, 135, "");
+        drawUtils.drawString("§7Joins §8» §e" + TerraMCnetServer.getJoins(), x -75, 139);
 
         drawUtils.drawString("§7Developed by MisterCore", 5, height - 10, 0.8D);
 

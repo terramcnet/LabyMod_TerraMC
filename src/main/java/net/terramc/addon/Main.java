@@ -1,8 +1,11 @@
 package net.terramc.addon;
 
+import com.google.gson.JsonElement;
+import net.labymod.api.LabyModAPI;
 import net.labymod.api.LabyModAddon;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
+import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.*;
 import net.labymod.utils.Material;
 import net.minecraft.util.ResourceLocation;
@@ -32,8 +35,13 @@ public class Main extends LabyModAddon {
 
     public static boolean enabled;
 
-    public static String addonVersion = "2.6";
-    public static List<String> versionChanges = new ArrayList<String>();
+    public static String addonVersion = "2.7";
+    public static List<String> versionChanges = new ArrayList<>();
+
+    @Override
+    public LabyModAPI getApi() {
+        return super.getApi();
+    }
 
     @Override
     public void onEnable() {
@@ -147,4 +155,9 @@ public class Main extends LabyModAddon {
     public static int getGuiKey() {
         return guiKey;
     }
+
+    public static void sendMessageToServer(String messageKey, JsonElement message) {
+        LabyMod.getInstance().getLabyModAPI().sendJsonMessageToServer(messageKey, message);
+    }
+
 }

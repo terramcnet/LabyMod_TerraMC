@@ -14,20 +14,19 @@ public class TerraGUI extends GuiScreen {
     public void initGui() {
         super.initGui();
 
+        int buttonLength = 90;
+
         this.buttonList.add(new GuiButton(0, 5, 5, 70, 20, "§c✖ Schließen"));
 
-        this.buttonList.add(new GuiButton(10, width -75, height -25, 70, 20, "§8» §bSocial"));
+        this.buttonList.add(new GuiButton(10, width -75, height -25, 70, 20, "§bSocial"));
 
         if(!Main.enabled) {
-            this.buttonList.add(new GuiButton(1, width / 2 - 70, 50, "§8» §aVerbinden"));
+            this.buttonList.add(new GuiButton(1, width / 2 - 75, 70, 150, 20,  "§8» §aVerbinden"));
         } else {
-            this.buttonList.add(new GuiButton(2, 100, 50, 70, 20, "§8» §eStats"));
-            this.buttonList.add(new GuiButton(3, 100, 80, 90, 20, "§8» §6Übersicht"));
+            this.buttonList.add(new GuiButton(2, 100, 50, buttonLength, 20, "§eStats"));
+            this.buttonList.add(new GuiButton(3, 100, 80, buttonLength, 20, "§6Übersicht"));
             if(Main.isStaff()) {
-                this.buttonList.add(new GuiButton(4, 100, 110, 130, 20, "§8» §4Offene Reports"));
-            }
-            if(Main.isAdmin()) {
-                this.buttonList.add(new GuiButton(5, width -150, 50, 130, 20, "§8» §aCloud-Steuerung"));
+                this.buttonList.add(new GuiButton(4, 100, 110, buttonLength, 20, "§aTeam"));
             }
         }
 
@@ -43,7 +42,7 @@ public class TerraGUI extends GuiScreen {
         drawUtils.drawCenteredString("§8« §aTerraMC.net §8- §aGUI §8»", width / 2, 20, 1.5);
 
         if(!Main.enabled) {
-            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", width / 2, 40);
+            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", width / 2, 60);
         }
 
         drawUtils.drawString("§7Developed by MisterCore", 5, height - 10, 0.8D);

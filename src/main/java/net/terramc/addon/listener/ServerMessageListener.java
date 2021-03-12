@@ -3,7 +3,11 @@ package net.terramc.addon.listener;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.labymod.api.events.ServerMessageEvent;
+import net.labymod.main.LabyMod;
 import net.terramc.addon.TerraMCnetServer;
+import net.terramc.addon.guiStaff.NotifyGUI;
+import net.terramc.addon.utils.PlayerNotify;
+import net.terramc.addon.utils.PlayerStats;
 import net.terramc.addon.utils.ReportData;
 
 public class ServerMessageListener implements ServerMessageEvent {
@@ -35,6 +39,12 @@ public class ServerMessageListener implements ServerMessageEvent {
             if(object.has("reportAddonDataAdd")) {
                 TerraMCnetServer.getReports().add(ReportData.fromString(object.get("reportAddonDataAdd").getAsString()));
             }
+            if(object.has("playTime")) {
+                TerraMCnetServer.setOnlineTime(object.get("playTime").getAsString().replace("_", " "));
+            }
+            if(object.has("playerJoins")) {
+                TerraMCnetServer.setJoins(object.get("playerJoins").getAsInt());
+            }
             if(object.has("reportAddonDataDel")) {
                 int id = object.get("reportAddonDataDel").getAsInt();
                 TerraMCnetServer.getReports().forEach(reportData -> {
@@ -43,6 +53,80 @@ public class ServerMessageListener implements ServerMessageEvent {
                     }
                 });
             }
+            if(object.has("notifyLoad")) {
+                PlayerNotify.loadFromString(object.get("notifyLoad").getAsString());
+                LabyMod.getInstance().getGuiCustomAchievement().displayAchievement("§6Notify", "§7Daten wurden vom Server übertragen§7.");
+            }
+            if(object.has("notifyChange")) {
+                String raw = object.get("notifyChange").getAsString();
+                String name = raw.split("=")[0];
+                boolean status = Boolean.parseBoolean(raw.split("=")[1]);
+                if(PlayerNotify.getNotify(name) != null) {
+                    PlayerNotify notify = PlayerNotify.getNotify(name);
+                    notify.setEnabled(status);
+                    NotifyGUI.displayNotify(notify, status);
+                }
+            }
+
+            if(object.has("playerStats")) {
+                String raw = object.get("playerStats").getAsString();
+                String type = raw.split(";")[0];
+
+                if(type.equalsIgnoreCase("BuildFFA")) {
+                    PlayerStats.BuildFFA.kills = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.BuildFFA.deaths = Integer.parseInt(raw.split(";")[2]);
+                    PlayerStats.BuildFFA.kd = Double.parseDouble(raw.split(";")[3]);
+                    PlayerStats.BuildFFA.points = Integer.parseInt(raw.split(";")[4]);
+                }
+
+                if(type.equalsIgnoreCase("KBFFA")) {
+                    PlayerStats.KnockBackFFA.kills = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.KnockBackFFA.deaths = Integer.parseInt(raw.split(";")[2]);
+                    PlayerStats.KnockBackFFA.kd = Double.parseDouble(raw.split(";")[3]);
+                    PlayerStats.KnockBackFFA.points = Integer.parseInt(raw.split(";")[4]);
+                }
+
+                if(type.equalsIgnoreCase("ST")) {
+                    PlayerStats.SoupTrainer.bowls = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.SoupTrainer.soups = Integer.parseInt(raw.split(";")[2]);
+                }
+
+                if(type.equalsIgnoreCase("OL")) {
+                    PlayerStats.OneLine.wins = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.OneLine.loses = Integer.parseInt(raw.split(";")[2]);
+                }
+
+                if(type.equalsIgnoreCase("XP")) {
+                    PlayerStats.XP.kills = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.XP.deaths = Integer.parseInt(raw.split(";")[2]);
+                    PlayerStats.XP.kd = Double.parseDouble(raw.split(";")[3]);
+                    PlayerStats.XP.wins = Integer.parseInt(raw.split(";")[4]);
+                }
+
+                if(type.equalsIgnoreCase("TDM")) {
+                    PlayerStats.TDM.kills = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.TDM.deaths = Integer.parseInt(raw.split(";")[2]);
+                    PlayerStats.TDM.kd = Double.parseDouble(raw.split(";")[3]);
+                    PlayerStats.TDM.wins = Integer.parseInt(raw.split(";")[4]);
+                    PlayerStats.TDM.loses = Integer.parseInt(raw.split(";")[5]);
+                }
+
+                if(type.equalsIgnoreCase("FFA")) {
+                    PlayerStats.FFA.kills = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.FFA.deaths = Integer.parseInt(raw.split(";")[2]);
+                    PlayerStats.FFA.kd = Double.parseDouble(raw.split(";")[3]);
+                    PlayerStats.FFA.points = Integer.parseInt(raw.split(";")[4]);
+                }
+
+                if(type.equalsIgnoreCase("WaterFFA")) {
+                    PlayerStats.WaterFFA.kills = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.WaterFFA.deaths = Integer.parseInt(raw.split(";")[2]);
+                    PlayerStats.WaterFFA.kd = Double.parseDouble(raw.split(";")[3]);
+                    PlayerStats.WaterFFA.points = Integer.parseInt(raw.split(";")[4]);
+                }
+
+            }
+
         }
     }
 }
