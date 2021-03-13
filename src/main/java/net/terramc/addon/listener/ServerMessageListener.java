@@ -9,6 +9,7 @@ import net.terramc.addon.guiStaff.NotifyGUI;
 import net.terramc.addon.utils.PlayerNotify;
 import net.terramc.addon.utils.PlayerStats;
 import net.terramc.addon.utils.ReportData;
+import net.terramc.addon.utils.SupportData;
 
 public class ServerMessageListener implements ServerMessageEvent {
 
@@ -36,14 +37,19 @@ public class ServerMessageListener implements ServerMessageEvent {
             if(object.has("joinedRound")) {
                 TerraMCnetServer.setInRound(object.get("joinedRound").getAsBoolean());
             }
-            if(object.has("reportAddonDataAdd")) {
-                TerraMCnetServer.getReports().add(ReportData.fromString(object.get("reportAddonDataAdd").getAsString()));
-            }
             if(object.has("playTime")) {
                 TerraMCnetServer.setOnlineTime(object.get("playTime").getAsString().replace("_", " "));
             }
             if(object.has("playerJoins")) {
                 TerraMCnetServer.setJoins(object.get("playerJoins").getAsInt());
+            }
+
+            // Staff
+
+                // Reports
+
+            if(object.has("reportAddonDataAdd")) {
+                TerraMCnetServer.getReports().add(ReportData.fromString(object.get("reportAddonDataAdd").getAsString()));
             }
             if(object.has("reportAddonDataDel")) {
                 int id = object.get("reportAddonDataDel").getAsInt();
@@ -53,6 +59,23 @@ public class ServerMessageListener implements ServerMessageEvent {
                     }
                 });
             }
+
+                // Supports
+
+            if(object.has("supportAddonDataAdd")) {
+                TerraMCnetServer.getSupports().add(SupportData.fromString(object.get("supportAddonDataAdd").getAsString()));
+            }
+            if(object.has("supportAddonDataDel")) {
+                int id = object.get("supportAddonDataDel").getAsInt();
+                TerraMCnetServer.getSupports().forEach(supportData -> {
+                    if(supportData.getId() == id) {
+                        TerraMCnetServer.getSupports().remove(supportData);
+                    }
+                });
+            }
+
+                // Notify
+
             if(object.has("notifyLoad")) {
                 PlayerNotify.loadFromString(object.get("notifyLoad").getAsString());
                 LabyMod.getInstance().getGuiCustomAchievement().displayAchievement("§6Notify", "§7Daten wurden vom Server übertragen§7.");
@@ -67,6 +90,8 @@ public class ServerMessageListener implements ServerMessageEvent {
                     NotifyGUI.displayNotify(notify, status);
                 }
             }
+
+            //
 
             if(object.has("playerStats")) {
                 String raw = object.get("playerStats").getAsString();

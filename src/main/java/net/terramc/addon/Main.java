@@ -36,7 +36,6 @@ public class Main extends LabyModAddon {
     public static boolean enabled;
 
     public static String addonVersion = "2.7";
-    public static List<String> versionChanges = new ArrayList<>();
 
     @Override
     public LabyModAPI getApi() {
@@ -58,8 +57,6 @@ public class Main extends LabyModAddon {
         //Tabs.getTabUpdateListener().add(map -> map.put("TerraMC", new Class[]{TerraGUI.class}));
 
         this.getApi().getEventManager().registerOnJoin(serverData -> enabled = serverData.getIp().equalsIgnoreCase("terramc.net"));
-
-        versionChanges.add("&aGUI hinzugefügt");
 
     }
 

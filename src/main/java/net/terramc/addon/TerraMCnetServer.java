@@ -9,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.PacketBuffer;
 import net.terramc.addon.utils.ReportData;
+import net.terramc.addon.utils.SupportData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class TerraMCnetServer extends Server {
     // Staff functions
 
     private static List<ReportData> reports = new ArrayList<>();
+    private static List<SupportData> supports = new ArrayList<>();
 
     //
 
@@ -152,6 +154,10 @@ public class TerraMCnetServer extends Server {
         return reports;
     }
 
+    public static List<SupportData> getSupports() {
+        return supports;
+    }
+
     public static String getOnlineTime() {
         return onlineTime;
     }
@@ -174,13 +180,6 @@ public class TerraMCnetServer extends Server {
             labyMod.displayMessageInChat("§a§lTerraMC §7§lLabyMod-Addon");
             labyMod.displayMessageInChat("§7Es ist eine neue Version §8[§e" + version + "§8] §7verfügbar!");
             labyMod.displayMessageInChat("");
-            if(Main.versionChanges.size() > 0) {
-                labyMod.displayMessageInChat("§7Was ist neu in der Version?§8:");
-                for(String entry : Main.versionChanges) {
-                    labyMod.displayMessageInChat("§8» §7" + entry);
-                }
-                labyMod.displayMessageInChat("");
-            }
             labyMod.displayMessageInChat("§7Du kannst sie dir unter §ehttps://terramc.net/laby §7herunterladen.");
         }
     }

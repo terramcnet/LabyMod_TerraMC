@@ -5,6 +5,7 @@ import net.labymod.utils.DrawUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.terramc.addon.Main;
+import net.terramc.addon.guiStaff.CloudControlGUI;
 
 import java.io.IOException;
 
@@ -28,6 +29,11 @@ public class TerraGUI extends GuiScreen {
             if(Main.isStaff()) {
                 this.buttonList.add(new GuiButton(4, 100, 110, buttonLength, 20, "§aTeam"));
             }
+
+            if(Main.isAdmin()) {
+                this.buttonList.add(new GuiButton(11, width -150, 50, 130, 20, "§aCloud-Steuerung"));
+            }
+
         }
 
     }
@@ -71,6 +77,9 @@ public class TerraGUI extends GuiScreen {
                 break;
             case 10:
                 Minecraft.getMinecraft().displayGuiScreen(new SocialGUI(this));
+                break;
+            case 11:
+                Minecraft.getMinecraft().displayGuiScreen(new CloudControlGUI(this));
                 break;
         }
 

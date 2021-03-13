@@ -9,6 +9,7 @@ import net.terramc.addon.Main;
 import net.terramc.addon.guiStaff.CloudControlGUI;
 import net.terramc.addon.guiStaff.NotifyGUI;
 import net.terramc.addon.guiStaff.ReportsGUI;
+import net.terramc.addon.guiStaff.SupportsGUI;
 
 import java.io.IOException;
 
@@ -29,11 +30,8 @@ public class StaffGUI extends GuiScreen {
         if(Main.isStaff()) {
             this.buttonList.add(new GuiButton(1, 100, 50, 130, 20, "§8» §4Offene Reports"));
             this.buttonList.add(new GuiButton(2, 100, 80, 150, 20, "§8» §6Benachrichtigungen"));
+            this.buttonList.add(new GuiButton(3, 100, 110, 150, 20, "§8» §6Offene Supports"));
         }
-        if(Main.isAdmin()) {
-            this.buttonList.add(new GuiButton(10, width -150, 50, 130, 20, "§8» §aCloud-Steuerung"));
-        }
-
     }
 
     @Override
@@ -68,8 +66,8 @@ public class StaffGUI extends GuiScreen {
             case 2:
                 Minecraft.getMinecraft().displayGuiScreen(new NotifyGUI(this));
                 break;
-            case 10:
-                Minecraft.getMinecraft().displayGuiScreen(new CloudControlGUI(this));
+            case 3:
+                Minecraft.getMinecraft().displayGuiScreen(new SupportsGUI(this));
                 break;
         }
 
