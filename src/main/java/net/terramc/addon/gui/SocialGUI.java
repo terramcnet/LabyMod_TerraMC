@@ -22,8 +22,6 @@ public class SocialGUI extends GuiScreen {
 
         this.buttonList.add(new GuiButton(0, 5, 5, 70, 20, "§8« §cZurück"));
 
-        int x = width / 2 - 70;
-
         int size = width / 2;
 
         int xPos = width / 4;
@@ -42,7 +40,9 @@ public class SocialGUI extends GuiScreen {
 
         DrawUtils drawUtils = LabyMod.getInstance().getDrawUtils();
 
-        drawUtils.drawCenteredString("§8« §aTerraMC.net §8- §aSocialMedia §8»", width / 2, 20, 1.5);
+        int x = width / 2;
+
+        drawUtils.drawCenteredString("§8« §aTerraMC.net §8- §aSocialMedia §8»", x, 20, 1.5);
 
         drawUtils.drawString("§7Developed by MisterCore", 5, height - 10, 0.8D);
 

@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.terramc.addon.Main;
-import net.terramc.addon.guiStaff.CloudControlGUI;
 import net.terramc.addon.guiStaff.NotifyGUI;
 import net.terramc.addon.guiStaff.ReportsGUI;
 import net.terramc.addon.guiStaff.SupportsGUI;
@@ -41,13 +40,15 @@ public class StaffGUI extends GuiScreen {
 
         DrawUtils drawUtils = LabyMod.getInstance().getDrawUtils();
 
+        int x = width / 2;
+
         if(!Main.enabled) {
-            drawUtils.drawCenteredString("§4§lKeine Informationen verfügbar!", width / 2, 20);
-            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", width / 2, 30);
+            drawUtils.drawCenteredString("§4§lKeine Informationen verfügbar!", x, 20);
+            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", x, 30);
             return;
         }
 
-        drawUtils.drawCenteredString("§8« §aTerraMC.net §8- §aTeamGUI §8»", width / 2, 20, 1.5);
+        drawUtils.drawCenteredString("§8« §aTerraMC.net §8- §aTeamGUI §8»", x, 20, 1.5);
 
         drawUtils.drawString("§7Developed by MisterCore", 5, height - 10, 0.8D);
     }

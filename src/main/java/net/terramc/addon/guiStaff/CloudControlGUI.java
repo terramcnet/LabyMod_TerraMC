@@ -26,60 +26,88 @@ public class CloudControlGUI extends GuiScreen {
 
         this.buttonList.add(new GuiButton(0, 5, 5, 70, 20, "§8« §cZurück"));
 
-        if(Main.isAdmin()) {
+        if(Main.canControlCloud()) {
 
             int middleX = width / 2;
 
             // Proxy
             this.buttonList.add(new GuiButton(1, middleX - 30, 90, 60, 20, "§cStoppen"));
 
-            // Lobby
+            // Lobby - Stop
             this.buttonList.add(new GuiButton(3, 150 -65, 140, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(4, 150 +5, 140, 60, 20, "§6Wartungen"));
 
-            // PremiumLobby
+            // PremiumLobby - Stop
             this.buttonList.add(new GuiButton(5, middleX -65, 140, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(6, middleX +5, 140, 60, 20, "§6Wartungen"));
 
-            // SilentLobby
+            // SilentLobby - Stop
             this.buttonList.add(new GuiButton(7, width - 150 -65, 140, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(8, width - 150 +5, 140, 60, 20, "§6Wartungen"));
 
-            // TDM-2x1
+            // TDM-2x1 - Stop
             this.buttonList.add(new GuiButton(9, 150 -65, 190, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(10, 150 +5, 190, 60, 20, "§6Wartungen"));
 
-            // BuildFFA
+            // BuildFFA - Stop
             this.buttonList.add(new GuiButton(11, middleX -65, 190, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(12, middleX +5, 190, 60, 20, "§6Wartungen"));
 
-            // XP
+            // XP - Stop
             this.buttonList.add(new GuiButton(13, width - 150 -65, 190, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(14, width - 150 +5, 190, 60, 20, "§6Wartungen"));
 
-            // TDM-2x2
+            // TDM-2x2 - Stop
             this.buttonList.add(new GuiButton(15, 150 -65, 240, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(16, 150 +5, 240, 60, 20, "§6Wartungen"));
 
-            // FFA
+            // FFA - Stop
             this.buttonList.add(new GuiButton(17, middleX -65, 240, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(18, middleX +5, 240, 60, 20, "§6Wartungen"));
 
-            // OneLine
+            // OneLine - Stop
             this.buttonList.add(new GuiButton(19, width - 150 -65, 240, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(20, width - 150 +5, 240, 60, 20, "§6Wartungen"));
 
-            // TDM-2x4
+            // TDM-2x4 - Stop
             this.buttonList.add(new GuiButton(21, 150 -65, 290, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(22, 150 +5, 290, 60, 20, "§6Wartungen"));
 
-            // WaterFightFFA
+            // WaterFightFFA - Stop
             this.buttonList.add(new GuiButton(23, middleX -65, 290, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(24, middleX +5, 290, 60, 20, "§6Wartungen"));
 
-            // KnockBackFFA
+            // KnockBackFFA - Stop
             this.buttonList.add(new GuiButton(25, width - 150 -65, 290, 60, 20, "§cStoppen"));
-            this.buttonList.add(new GuiButton(26, width - 150 +5, 290, 60, 20, "§6Wartungen"));
+
+            if(Main.canFullyControlCloud()) {
+
+                // Lobby - Maintenance
+                this.buttonList.add(new GuiButton(4, 150 +5, 140, 60, 20, "§6Wartungen"));
+
+                // PremiumLobby - Maintenance
+                this.buttonList.add(new GuiButton(6, middleX +5, 140, 60, 20, "§6Wartungen"));
+
+                // SilentLobby - Maintenance
+                this.buttonList.add(new GuiButton(8, width - 150 +5, 140, 60, 20, "§6Wartungen"));
+
+                // TDM-2x1 - Maintenance
+                this.buttonList.add(new GuiButton(10, 150 +5, 190, 60, 20, "§6Wartungen"));
+
+                // BuildFFA - Maintenance
+                this.buttonList.add(new GuiButton(12, middleX +5, 190, 60, 20, "§6Wartungen"));
+
+                // XP - Maintenance
+                this.buttonList.add(new GuiButton(14, width - 150 +5, 190, 60, 20, "§6Wartungen"));
+
+                // TDM-2x2 - Maintenance
+                this.buttonList.add(new GuiButton(16, 150 +5, 240, 60, 20, "§6Wartungen"));
+
+                // FFA - Maintenance
+                this.buttonList.add(new GuiButton(18, middleX +5, 240, 60, 20, "§6Wartungen"));
+
+                // OneLine - Maintenance
+                this.buttonList.add(new GuiButton(20, width - 150 +5, 240, 60, 20, "§6Wartungen"));
+
+                // TDM-2x4 - Maintenance
+                this.buttonList.add(new GuiButton(22, 150 +5, 290, 60, 20, "§6Wartungen"));
+
+                // WaterFightFFA - Maintenance
+                this.buttonList.add(new GuiButton(24, middleX +5, 290, 60, 20, "§6Wartungen"));
+
+                // KnockBackFFA - Maintenance
+                this.buttonList.add(new GuiButton(26, width - 150 +5, 290, 60, 20, "§6Wartungen"));
+
+            }
 
         }
 

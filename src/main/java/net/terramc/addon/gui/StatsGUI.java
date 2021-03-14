@@ -44,13 +44,15 @@ public class StatsGUI extends GuiScreen {
         int y2 = y +100;
         int y3 = y +200;
 
+        int xMiddle = width / 2;
+
         if(!Main.enabled) {
-            drawUtils.drawCenteredString("§4§lKeine Stats verfügbar!", width / 2, 20);
-            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", width / 2, 30);
+            drawUtils.drawCenteredString("§4§lKeine Stats verfügbar!", xMiddle, 20);
+            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", xMiddle, 30);
             return;
         }
 
-        drawUtils.drawCenteredString("§8« §aDeine Stats §8»", width / 2, 20, 1.5);
+        drawUtils.drawCenteredString("§8« §aDeine Stats §8»", xMiddle, 20, 1.5);
 
         // Line #1
 

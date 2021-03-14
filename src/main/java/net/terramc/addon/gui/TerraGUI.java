@@ -30,7 +30,7 @@ public class TerraGUI extends GuiScreen {
                 this.buttonList.add(new GuiButton(4, 100, 110, buttonLength, 20, "§aTeam"));
             }
 
-            if(Main.isAdmin()) {
+            if(Main.canControlCloud()) {
                 this.buttonList.add(new GuiButton(11, width -150, 50, 130, 20, "§aCloud-Steuerung"));
             }
 
@@ -45,10 +45,12 @@ public class TerraGUI extends GuiScreen {
 
         DrawUtils drawUtils = LabyMod.getInstance().getDrawUtils();
 
-        drawUtils.drawCenteredString("§8« §aTerraMC.net §8- §aGUI §8»", width / 2, 20, 1.5);
+        int x = width / 2;
+
+        drawUtils.drawCenteredString("§8« §aTerraMC.net §8- §aGUI §8»", x, 20, 1.5);
 
         if(!Main.enabled) {
-            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", width / 2, 60);
+            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", x, 60);
         }
 
         drawUtils.drawString("§7Developed by MisterCore", 5, height - 10, 0.8D);

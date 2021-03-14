@@ -16,7 +16,6 @@ import net.terramc.addon.modules.GameRankModule;
 import net.terramc.addon.modules.NickModule;
 import org.lwjgl.input.Keyboard;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends LabyModAddon {
@@ -147,6 +146,22 @@ public class Main extends LabyModAddon {
         }
         return rank.equals("Premium") || rank.equals("Hydra") || rank.equals("Terra") || rank.equals("Premium+") ||
                 rank.equals("YouTuber") || rank.equals("YouTuber+");
+    }
+
+    public static boolean canControlCloud() {
+        String rank = TerraMCnetServer.getRank();
+        if(rank == null) {
+            return false;
+        }
+        return rank.equals("Inhaber") || rank.equals("Admin") || rank.equals("SrDev") || rank.equals("Dev") || rank.equals("SrMod");
+    }
+
+    public static boolean canFullyControlCloud() {
+        String rank = TerraMCnetServer.getRank();
+        if(rank == null) {
+            return false;
+        }
+        return rank.equals("Inhaber") || rank.equals("Admin");
     }
 
     public static int getGuiKey() {
