@@ -55,12 +55,15 @@ public class NotifyGUI extends GuiScreen {
 
         DrawUtils drawUtils = LabyMod.getInstance().getDrawUtils();
 
+        int xMiddle = width / 2;
+        int yMiddle = height / 2;
+
         if(!Main.isStaff()) {
-            drawUtils.drawCenteredString("§4§nDu bist kein Teammitglied!", width / 2, height /2);
+            drawUtils.drawCenteredString("§4§nDu bist kein Teammitglied!", xMiddle, yMiddle);
             return;
         }
 
-        drawUtils.drawCenteredString("§8« §6Benachrichtgungen §8»", width / 2, 5, 1.5);
+        drawUtils.drawCenteredString("§8« §6Benachrichtgungen §8»", xMiddle, 5, 1.5);
 
     }
 
@@ -76,12 +79,11 @@ public class NotifyGUI extends GuiScreen {
         }
     }
 
-    private String messageKey = "terra_notify";
-
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         super.actionPerformed(button);
 
+        String messageKey = "terra_notify";
         switch(button.id) {
             case 0:
                 Minecraft.getMinecraft().displayGuiScreen(this.lastScreen);

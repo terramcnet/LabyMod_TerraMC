@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SupportsGUI extends GuiScreen {
 
-    private Scrollbar scrollbar = new Scrollbar(18);
+    private final Scrollbar scrollbar = new Scrollbar(18);
 
     public GuiScreen lastScreen;
 
@@ -41,15 +41,17 @@ public class SupportsGUI extends GuiScreen {
 
         DrawUtils drawUtils = LabyMod.getInstance().getDrawUtils();
 
+        int xMiddle = width / 2;
+
         if(!Main.enabled) {
-            drawUtils.drawCenteredString("§4§lKeine Informationen verfügbar!", width / 2, 20);
-            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", width / 2, 30);
+            drawUtils.drawCenteredString("§4§lKeine Informationen verfügbar!", xMiddle, 20);
+            drawUtils.drawCenteredString("§cBitte verbinde dich auf TerraMC.net", xMiddle, 30);
             return;
         }
 
         List<SupportData> list = TerraMCnetServer.getSupports();
         int xReports = 90;
-        drawUtils.drawCenteredString("§8« §6Offene Supports §8(§e" + list.size() + "§8) »", width / 2, 5, 1.5);
+        drawUtils.drawCenteredString("§8« §6Offene Supports §8(§e" + list.size() + "§8) »", xMiddle, 5, 1.5);
 
         double yPos = 30 + this.scrollbar.getScrollY();
         if(list.size() > 0) {
@@ -63,7 +65,7 @@ public class SupportsGUI extends GuiScreen {
                 yPos += 20;
             }
         } else {
-            drawUtils.drawCenteredString("§cKeine offenen Supports vorhanden.", width / 2, 30, 1.5);
+            drawUtils.drawCenteredString("§cKeine offenen Supports vorhanden.", xMiddle, 30, 1.5);
         }
 
         this.scrollbar.update(list.size());

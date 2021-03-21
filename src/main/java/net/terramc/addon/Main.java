@@ -56,6 +56,15 @@ public class Main extends LabyModAddon {
         //Tabs.getTabUpdateListener().add(map -> map.put("TerraMC", new Class[]{TerraGUI.class}));
 
         this.getApi().getEventManager().registerOnJoin(serverData -> enabled = serverData.getIp().equalsIgnoreCase("terramc.net"));
+        this.getApi().getEventManager().registerOnQuit(serverData -> {
+            if(serverData != null) {
+                if(serverData.getIp().equalsIgnoreCase("terramc.net")) {
+                    TerraMCnetServer.getReports().clear();
+                    TerraMCnetServer.getSupports().clear();
+                    TerraMCnetServer.resetValues();
+                }
+            }
+        });
 
     }
 

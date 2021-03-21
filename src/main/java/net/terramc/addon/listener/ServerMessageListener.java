@@ -22,6 +22,7 @@ public class ServerMessageListener implements ServerMessageEvent {
                     TerraMCnetServer.resetValues();
                 }
             }
+
             if(object.has("gameRank")) {
                 TerraMCnetServer.setGameRank(object.get("gameRank").getAsString());
             }

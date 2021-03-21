@@ -9,6 +9,7 @@ import org.lwjgl.input.Keyboard;
 
 public class KeyboardListener {
 
+    @SuppressWarnings("unused")
     @SubscribeEvent
     public void onKeyboardPress(InputEvent.KeyInputEvent event) {
         if(Main.getGuiKey() == -1) {
