@@ -26,12 +26,13 @@ public class TerraGUI extends GuiScreen {
         } else {
             this.buttonList.add(new GuiButton(2, 100, 50, buttonLength, 20, "§eStats"));
             this.buttonList.add(new GuiButton(3, 100, 80, buttonLength, 20, "§6Übersicht"));
+
             if(Main.isStaff()) {
                 this.buttonList.add(new GuiButton(4, 100, 110, buttonLength, 20, "§aTeam"));
             }
 
             if(Main.canControlCloud()) {
-                this.buttonList.add(new GuiButton(11, width -150, 50, 130, 20, "§aCloud-Steuerung"));
+                this.buttonList.add(new GuiButton(11, width -230, 50, 130, 20, "§aCloud-Steuerung"));
             }
 
         }

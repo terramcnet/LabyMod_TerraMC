@@ -1,14 +1,20 @@
 package net.terramc.addon;
 
 import net.labymod.api.events.TabListEvent;
+import net.labymod.ingamegui.ModuleCategory;
+import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.main.LabyMod;
 import net.labymod.servermanager.ChatDisplayAction;
 import net.labymod.servermanager.Server;
+import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.terramc.addon.utils.CurrentReportData;
 import net.terramc.addon.utils.ReportData;
+import net.terramc.addon.utils.StaffSettings;
 import net.terramc.addon.utils.SupportData;
 
 import java.util.ArrayList;
@@ -39,6 +45,16 @@ public class TerraMCnetServer extends Server {
 
     private static List<ReportData> reports = new ArrayList<>();
     private static List<SupportData> supports = new ArrayList<>();
+    private static CurrentReportData currentReportData = null;
+
+    private static boolean vanish;
+    private static boolean autoVanish;
+
+    // Admin functions
+
+    private static String serverTps;
+    private static String cpuUsage;
+    private static String heapUsage;
 
     //
 
@@ -144,6 +160,11 @@ public class TerraMCnetServer extends Server {
 
     public static void setRank(String value) {
         rank = value;
+        if(Main.isStaff()) {
+            ModuleCategoryRegistry.loadCategory(Main.TERRAMCNET_STAFF_CATEGORY = new ModuleCategory("TerraMC-Team", true, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
+            StaffSettings.loadStaffSettings();
+            Main.getInstance().addSettings(StaffSettings.getStaffSettings());
+        }
     }
 
     public static void setInRound(boolean status) {
@@ -156,6 +177,54 @@ public class TerraMCnetServer extends Server {
 
     public static List<SupportData> getSupports() {
         return supports;
+    }
+
+    public static CurrentReportData getCurrentReportData() {
+        return currentReportData;
+    }
+
+    public static void setCurrentReportData(CurrentReportData currentReportData) {
+        TerraMCnetServer.currentReportData = currentReportData;
+    }
+
+    public static void setVanish(boolean value) {
+        vanish = value;
+    }
+
+    public static void setAutoVanish(boolean value) {
+        autoVanish = value;
+    }
+
+    public static boolean isVanish() {
+        return vanish;
+    }
+
+    public static boolean isAutoVanish() {
+        return autoVanish;
+    }
+
+    public static void setServerTps(String value) {
+        serverTps = value;
+    }
+
+    public static String getServerTps() {
+        return serverTps;
+    }
+
+    public static void setCpuUsage(String value) {
+        cpuUsage = value;
+    }
+
+    public static String getCpuUsage() {
+        return cpuUsage;
+    }
+
+    public static void setHeapUsage(String value) {
+        heapUsage = value;
+    }
+
+    public static String getHeapUsage() {
+        return heapUsage;
     }
 
     public static String getOnlineTime() {

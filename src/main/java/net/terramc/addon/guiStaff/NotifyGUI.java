@@ -27,8 +27,6 @@ public class NotifyGUI extends GuiScreen {
 
         if(Main.isStaff()) {
 
-            // ✔ ✖
-
             this.buttonList.add(new GuiButton(1, 100, 100, 100, 20, "§eALLGEMEIN"));
             this.buttonList.add(new GuiButton(2, 100 + 130, 100, 100, 20, "§eCHATFILTER"));
 
@@ -65,6 +63,8 @@ public class NotifyGUI extends GuiScreen {
 
         drawUtils.drawCenteredString("§8« §6Benachrichtgungen §8»", xMiddle, 5, 1.5);
 
+
+        drawUtils.drawString("§7Developed by MisterCore", 5, height - 10, 0.8D);
     }
 
     public static void displayNotify(PlayerNotify type, boolean status) {

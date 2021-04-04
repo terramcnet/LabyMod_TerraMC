@@ -6,10 +6,7 @@ import net.labymod.api.events.ServerMessageEvent;
 import net.labymod.main.LabyMod;
 import net.terramc.addon.TerraMCnetServer;
 import net.terramc.addon.guiStaff.NotifyGUI;
-import net.terramc.addon.utils.PlayerNotify;
-import net.terramc.addon.utils.PlayerStats;
-import net.terramc.addon.utils.ReportData;
-import net.terramc.addon.utils.SupportData;
+import net.terramc.addon.utils.*;
 
 public class ServerMessageListener implements ServerMessageEvent {
 
@@ -17,6 +14,7 @@ public class ServerMessageListener implements ServerMessageEvent {
     public void onServerMessage(String key, JsonElement message) {
         if(key.equals("TerraMod") & message.isJsonObject()) {
             JsonObject object = message.getAsJsonObject();
+
             if(object.has("LOBBY")) {
                 if(object.get("LOBBY").getAsBoolean()) {
                     TerraMCnetServer.resetValues();
@@ -47,6 +45,22 @@ public class ServerMessageListener implements ServerMessageEvent {
 
             // Staff
 
+            if(object.has("vanish")) {
+                TerraMCnetServer.setVanish(object.get("vanish").getAsBoolean());
+            }
+            if(object.has("autoVanish")) {
+                TerraMCnetServer.setAutoVanish(object.get("autoVanish").getAsBoolean());
+            }
+            if(object.has("serverTPS")) {
+                TerraMCnetServer.setServerTps(object.get("serverTPS").getAsString());
+            }
+            if(object.has("serverCpuUsage")) {
+                TerraMCnetServer.setCpuUsage(object.get("serverCpuUsage").getAsString());
+            }
+            if(object.has("serverHeapUsage")) {
+                TerraMCnetServer.setHeapUsage(object.get("serverHeapUsage").getAsString());
+            }
+
                 // Reports
 
             if(object.has("reportAddonDataAdd")) {
@@ -59,6 +73,9 @@ public class ServerMessageListener implements ServerMessageEvent {
                         TerraMCnetServer.getReports().remove(reportData);
                     }
                 });
+            }
+            if(object.has("currentReportData")) {
+                TerraMCnetServer.setCurrentReportData(CurrentReportData.fromString(object.get("currentReportData").getAsString()));
             }
 
                 // Supports
