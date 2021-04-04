@@ -69,9 +69,7 @@ public class Main extends LabyModAddon {
         this.getApi().registerModule(new CurrentReportModule());
         this.getApi().registerModule(new ReportsModule());
         this.getApi().registerModule(new VanishModule());
-        this.getApi().registerModule(new TPSModule());
-        this.getApi().registerModule(new CpuUsageModule());
-        this.getApi().registerModule(new HeapUsageModule());
+        this.getApi().registerModule(new ServerStatusModule());
 
         this.getApi().registerForgeListener(new KeyboardListener());
 

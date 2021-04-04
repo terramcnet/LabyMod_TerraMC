@@ -20,6 +20,9 @@ public class VanishModule extends SimpleTextModule {
 
     @Override
     public String[] getDefaultValues() {
+        if(Main.isStaff()) {
+            return new String[] {"§4X", "§4X"};
+        }
         return new String[0];
     }
 
@@ -33,6 +36,9 @@ public class VanishModule extends SimpleTextModule {
 
     @Override
     public String[] getDefaultKeys() {
+        if(Main.isStaff()) {
+            return new String[] {"Vanish", "Auto. Vanish"};
+        }
         return new String[0];
     }
 

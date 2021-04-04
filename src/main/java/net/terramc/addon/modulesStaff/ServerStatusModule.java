@@ -6,47 +6,45 @@ import net.labymod.settings.elements.ControlElement;
 import net.labymod.utils.Material;
 import net.terramc.addon.Main;
 import net.terramc.addon.TerraMCnetServer;
-import net.terramc.addon.utils.CurrentReportData;
 import net.terramc.addon.utils.StaffSettings;
 
-public class CurrentReportModule extends SimpleTextModule {
+public class ServerStatusModule extends SimpleTextModule {
 
     @Override
     public String[] getValues() {
-        if(TerraMCnetServer.getCurrentReportData() != null) {
-            CurrentReportData reportData = TerraMCnetServer.getCurrentReportData();
-            return new String[] {reportData.getPlayer(), reportData.getReportedBy(), reportData.getReason(), String.valueOf(reportData.getId()), "§c/rpf"};
+        if(Main.isAdmin()) {
+            return new String[] {TerraMCnetServer.getServerTps(), TerraMCnetServer.getCpuUsage(), TerraMCnetServer.getHeapUsage()};
         }
         return new String[0];
     }
 
     @Override
     public String[] getDefaultValues() {
-        if(Main.isStaff()) {
-            return new String[] {"§4X", "§4X", "§4X", "§4X", "§4X"};
+        if(Main.isAdmin()) {
+            return new String[] {"0.0", "0.0", "0.0"};
         }
         return new String[0];
     }
 
     @Override
     public String[] getKeys() {
-        if(TerraMCnetServer.getCurrentReportData() != null) {
-            return new String[] {"Reportet", "Von", "Grund", "ID", "Abschließen?"};
+        if(Main.isAdmin()) {
+            return new String[] {"TPS", "CPU", "RAM"};
         }
         return new String[0];
     }
 
     @Override
     public String[] getDefaultKeys() {
-        if(Main.isStaff()) {
-            return new String[] {"Reportet", "Von", "Grund", "ID", "Abschließen?"};
+        if(Main.isAdmin()) {
+            return new String[] {"TPS", "CPU", "RAM"};
         }
         return new String[0];
     }
 
     @Override
     public ControlElement.IconData getIconData() {
-        return new ControlElement.IconData(Material.REDSTONE);
+        return new ControlElement.IconData(Material.REDSTONE_TORCH_ON);
     }
 
     @Override
@@ -55,18 +53,13 @@ public class CurrentReportModule extends SimpleTextModule {
     }
 
     @Override
-    public String getControlName() {
-        return "Aktueller Report";
-    }
-
-    @Override
     public String getSettingName() {
-        return "Aktueller Report";
+        return "ServerStatus";
     }
 
     @Override
     public String getDescription() {
-        return "Zeigt Infos zum Report, den du aktuell bearbeitest.";
+        return null;
     }
 
     @Override
@@ -81,6 +74,6 @@ public class CurrentReportModule extends SimpleTextModule {
 
     @Override
     public boolean isShown() {
-        return Main.enabled & Main.isStaff() & StaffSettings.showCurrentReportData & TerraMCnetServer.getCurrentReportData() != null;
+        return Main.enabled & Main.isAdmin() & StaffSettings.showServerStatus;
     }
 }

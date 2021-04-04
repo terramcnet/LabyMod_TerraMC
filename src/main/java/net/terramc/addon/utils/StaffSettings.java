@@ -22,18 +22,14 @@ public class StaffSettings {
 
     // Admin
 
-    public static boolean showTPS;
-    public static boolean showCpuUsage;
-    public static boolean showHeapUsage;
+    public static boolean showServerStatus;
 
     public static void loadStaffSettings() {
         JsonObject config = Main.getInstance().getConfigObject();
         showReports = !config.has("showReports") || config.get("showReports").getAsBoolean();
         showVanishStatus = !config.has("showVanishStatus") || config.get("showVanishStatus").getAsBoolean();
 
-        showTPS = !config.has("showTPS") || config.get("showTPS").getAsBoolean();
-        showCpuUsage = !config.has("showCpuUsage") || config.get("showCpuUsage").getAsBoolean();
-        showHeapUsage = !config.has("showHeapUsage") || config.get("showHeapUsage").getAsBoolean();
+        showServerStatus = !config.has("showServerStatus") || config.get("showServerStatus").getAsBoolean();
     }
 
     public static List<SettingsElement> getStaffSettings() {
@@ -67,29 +63,13 @@ public class StaffSettings {
 
             list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §4Admin Funktionen"));
 
-            list.add(new BooleanElement("§8» §fServer-TPS anzeigen", new ControlElement.IconData(Material.REDSTONE_TORCH_ON), new Consumer<Boolean>() {
+            list.add(new BooleanElement("§8» §fServer-Status anzeigen", new ControlElement.IconData(Material.REDSTONE_TORCH_ON), new Consumer<Boolean>() {
                 @Override
                 public void accept(Boolean status) {
-                    showTPS = status;
+                    showServerStatus = status;
                     Main.getInstance().addConfigEntry("showTPS", status);
                 }
-            }, showTPS));
-
-            list.add(new BooleanElement("§8» §fCPU Auslastung anzeigen", new ControlElement.IconData(Material.REDSTONE_TORCH_ON), new Consumer<Boolean>() {
-                @Override
-                public void accept(Boolean status) {
-                    showCpuUsage = status;
-                    Main.getInstance().addConfigEntry("showCpuUsage", status);
-                }
-            }, showCpuUsage));
-
-            list.add(new BooleanElement("§8» §fRAM Auslastung anzeigen", new ControlElement.IconData(Material.REDSTONE_TORCH_ON), new Consumer<Boolean>() {
-                @Override
-                public void accept(Boolean status) {
-                    showHeapUsage = status;
-                    Main.getInstance().addConfigEntry("showHeapUsage", status);
-                }
-            }, showCpuUsage));
+            }, showServerStatus));
         }
 
         return list;
