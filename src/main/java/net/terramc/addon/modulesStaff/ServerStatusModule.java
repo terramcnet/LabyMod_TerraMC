@@ -53,6 +53,11 @@ public class ServerStatusModule extends SimpleTextModule {
     }
 
     @Override
+    public String getControlName() {
+        return "Server-Status";
+    }
+
+    @Override
     public String getSettingName() {
         return "ServerStatus";
     }
