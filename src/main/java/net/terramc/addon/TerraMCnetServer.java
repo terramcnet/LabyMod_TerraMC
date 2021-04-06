@@ -1,17 +1,13 @@
 package net.terramc.addon;
 
 import net.labymod.api.events.TabListEvent;
-import net.labymod.ingamegui.ModuleCategory;
-import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.main.LabyMod;
 import net.labymod.servermanager.ChatDisplayAction;
 import net.labymod.servermanager.Server;
-import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
 import net.terramc.addon.utils.CurrentReportData;
 import net.terramc.addon.utils.ReportData;
 import net.terramc.addon.utils.StaffSettings;
@@ -161,9 +157,7 @@ public class TerraMCnetServer extends Server {
     public static void setRank(String value) {
         rank = value;
         if(Main.isStaff()) {
-            ModuleCategoryRegistry.loadCategory(Main.TERRAMCNET_STAFF_CATEGORY = new ModuleCategory("TerraMC-Team", true, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
             StaffSettings.loadStaffSettings();
-            Main.getInstance().addSettings(StaffSettings.getStaffSettings());
         }
     }
 

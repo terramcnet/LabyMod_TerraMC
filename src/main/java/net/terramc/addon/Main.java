@@ -2,9 +2,6 @@ package net.terramc.addon;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.labymod.addon.AddonLoader;
-import net.labymod.addon.online.AddonInfoManager;
-import net.labymod.addon.online.info.AddonInfo;
 import net.labymod.api.LabyModAPI;
 import net.labymod.api.LabyModAddon;
 import net.labymod.ingamegui.ModuleCategory;
@@ -19,8 +16,6 @@ import net.terramc.addon.modules.CoinsModule;
 import net.terramc.addon.modulesStaff.*;
 import net.terramc.addon.modules.GameRankModule;
 import net.terramc.addon.modules.NickModule;
-import net.terramc.addon.utils.CurrentReportData;
-import net.terramc.addon.utils.StaffSettings;
 import org.lwjgl.input.Keyboard;
 
 import java.util.List;
@@ -44,7 +39,7 @@ public class Main extends LabyModAddon {
 
     public static boolean enabled;
 
-    public static String addonVersion = "2.7";
+    public static String addonVersion = "2.9";
 
     @Override
     public LabyModAPI getApi() {
@@ -59,6 +54,7 @@ public class Main extends LabyModAddon {
     public void onEnable() {
         instance = this;
         ModuleCategoryRegistry.loadCategory(TERRAMCNET_CATEGORY = new ModuleCategory("TerraMC", true, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
+        ModuleCategoryRegistry.loadCategory(TERRAMCNET_STAFF_CATEGORY = new ModuleCategory("TerraMC-Team", false, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
         this.getApi().registerServerSupport(this, new TerraMCnetServer());
         this.getApi().getEventManager().register(new ServerMessageListener());
 
@@ -78,30 +74,22 @@ public class Main extends LabyModAddon {
         this.getApi().getEventManager().registerOnJoin(serverData -> enabled = serverData.getIp().equalsIgnoreCase("terramc.net"));
         this.getApi().getEventManager().registerOnQuit(serverData -> {
             if(serverData != null) {
-                if(serverData.getIp().equalsIgnoreCase("terramc.net")) {
-                    TerraMCnetServer.getReports().clear();
-                    TerraMCnetServer.getSupports().clear();
-                    TerraMCnetServer.resetValues();
-                    TerraMCnetServer.setCurrentReportData(null);
-                    ModuleCategoryRegistry.getCategories().remove(TERRAMCNET_STAFF_CATEGORY);
-                    removeSettings(StaffSettings.getStaffSettings());
-                }
+                TerraMCnetServer.getReports().clear();
+                TerraMCnetServer.getSupports().clear();
+                TerraMCnetServer.resetValues();
+                TerraMCnetServer.setCurrentReportData(null);
             }
         });
-
-        TerraMCnetServer.setCurrentReportData(new CurrentReportData(84058, "MisterCore", "MisterCore", "Test"));
-
     }
 
     @Override
     public void loadConfig() {
+        guiKey = (this.getConfig().has("guiKey") ? this.getConfig().get("guiKey").getAsInt() : Keyboard.KEY_MULTIPLY);
         filterPrivateMessages = !this.getConfig().has("filterPrivateMessages") || this.getConfig().get("filterPrivateMessages").getAsBoolean();
         displayGameRank = !this.getConfig().has("displayGameRank") || this.getConfig().get("displayGameRank").getAsBoolean();
         displayCoins = !this.getConfig().has("displayCoins") || this.getConfig().get("displayCoins").getAsBoolean();
         displayNickName = !this.getConfig().has("displayNickName") || this.getConfig().get("displayNickName").getAsBoolean();
         autoGGEnabled = !this.getConfig().has("autoGG") || this.getConfig().get("autoGG").getAsBoolean();
-        guiKey = (this.getConfig().has("guiKey") ? this.getConfig().get("guiKey").getAsInt() : Keyboard.KEY_MULTIPLY);
-
     }
 
     public void addConfigEntry(String name, Boolean value) {
@@ -214,27 +202,6 @@ public class Main extends LabyModAddon {
 
     public static void sendMessageToServer(String messageKey, JsonElement message) {
         LabyMod.getInstance().getLabyModAPI().sendJsonMessageToServer(messageKey, message);
-    }
-
-    private AddonInfo getAddonInfo() {
-        AddonInfoManager addonInfoManager = AddonInfoManager.getInstance();
-        addonInfoManager.init();
-        AddonInfo addonInfo = addonInfoManager.getAddonInfoMap().get(about.uuid);
-        if (addonInfo == null) {
-            addonInfo = AddonLoader.getOfflineAddons().stream()
-                    .filter(addon -> addon.getUuid().equals(about.uuid))
-                    .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("Unable to find addon info of \"" + about.name + "\" (" + about.uuid + ")!"));
-        }
-        return addonInfo;
-    }
-
-    public void addSettings(List<SettingsElement> settings) {
-        settings.forEach(settingsElement -> getAddonInfo().getAddonElement().getSubSettings().add(settingsElement));
-    }
-
-    public void removeSettings(List<SettingsElement> settings) {
-        settings.forEach(settingsElement -> getAddonInfo().getAddonElement().getSubSettings().remove(settingsElement));
     }
 
 }

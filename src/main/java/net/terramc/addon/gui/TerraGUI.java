@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.terramc.addon.Main;
 import net.terramc.addon.guiStaff.CloudControlGUI;
+import net.terramc.addon.guiStaff.StaffSettingsGUI;
 
 import java.io.IOException;
 
@@ -29,6 +30,7 @@ public class TerraGUI extends GuiScreen {
 
             if(Main.isStaff()) {
                 this.buttonList.add(new GuiButton(4, 100, 110, buttonLength, 20, "§aTeam"));
+                this.buttonList.add(new GuiButton(5, width -230, 80, 130, 20, "§aTeam-Einstellungen"));
             }
 
             if(Main.canControlCloud()) {
@@ -77,6 +79,9 @@ public class TerraGUI extends GuiScreen {
                 break;
             case 4:
                 Minecraft.getMinecraft().displayGuiScreen(new StaffGUI(this));
+                break;
+            case 5:
+                Minecraft.getMinecraft().displayGuiScreen(new StaffSettingsGUI(this));
                 break;
             case 10:
                 Minecraft.getMinecraft().displayGuiScreen(new SocialGUI(this));
