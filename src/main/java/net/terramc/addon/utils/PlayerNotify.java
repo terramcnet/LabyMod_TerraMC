@@ -14,9 +14,9 @@ public enum PlayerNotify {
     SUPPORT("support", "§eSupport", true),
     ALL("all", "§eAlles", true);
 
-    private String name;
-    private String display;
-    private boolean enabled;
+    String name;
+    String display;
+    boolean enabled;
 
     PlayerNotify(String name, String display, boolean enabled) {
         this.name = name;

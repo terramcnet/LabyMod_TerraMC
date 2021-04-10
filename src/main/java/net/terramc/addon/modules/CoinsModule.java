@@ -56,7 +56,7 @@ public class CoinsModule extends SimpleModule {
 
     @Override
     public ModuleCategory getCategory() {
-        return Main.TERRAMCNET_CATEGORY;
+    return Main.USER_CATEGORY;
     }
 
     @Override

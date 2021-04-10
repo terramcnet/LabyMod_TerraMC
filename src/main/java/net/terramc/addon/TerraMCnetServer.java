@@ -23,7 +23,7 @@ public class TerraMCnetServer extends Server {
     // Normal functions
 
     private static String gameRank = null;
-    private static int coins;
+    private static int coins = 0;
 
     private static String onlineTime = null;
     private static int joins = 0;
@@ -32,7 +32,7 @@ public class TerraMCnetServer extends Server {
 
     private static String nickName = null;
 
-    //
+    // Premium functions
 
     private static boolean inRound = false;
     private static boolean ggSent = false;
@@ -77,14 +77,25 @@ public class TerraMCnetServer extends Server {
             }
 
             String nickPrefix = "▎▏ Nick » ";
+            String nickPrefixOld = "•● Nick ┃ ";
             if(clean.startsWith(nickPrefix + "Du spielst nun als: ")) {
                 nickName = clean.replace(nickPrefix + "Du spielst nun als: ", "");
+            }
+            if(clean.startsWith(nickPrefixOld + "Du spielst nun als: ")) {
+                nickName = clean.replace(nickPrefixOld + "Du spielst nun als: ", "");
             }
             if(clean.startsWith(nickPrefix + "You are now playing as:")) {
                 nickName = clean.replace(nickPrefix + "You are now playing as: ", "");
             }
+            if(clean.startsWith(nickPrefixOld + "You are now playing as:")) {
+                nickName = clean.replace(nickPrefixOld + "You are now playing as: ", "");
+            }
             if(clean.startsWith(nickPrefix + "Dein Nickname wurde zurückgesetzt.") ||
                     clean.startsWith(nickPrefix + "Your nickname has been reset.")) {
+                nickName = null;
+            }
+            if(clean.startsWith(nickPrefixOld + "Dein Nickname wurde zurückgesetzt.") ||
+                    clean.startsWith(nickPrefixOld + "Your nickname has been reset.")) {
                 nickName = null;
             }
 

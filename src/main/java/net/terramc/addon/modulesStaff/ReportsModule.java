@@ -63,6 +63,6 @@ public class ReportsModule extends SimpleModule {
 
     @Override
     public ModuleCategory getCategory() {
-        return Main.TERRAMCNET_STAFF_CATEGORY;
+        return Main.STAFF_CATEGORY;
     }
 }

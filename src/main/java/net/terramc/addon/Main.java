@@ -32,8 +32,8 @@ public class Main extends LabyModAddon {
 
     static boolean autoGGEnabled;
 
-    public static ModuleCategory TERRAMCNET_CATEGORY;
-    public static ModuleCategory TERRAMCNET_STAFF_CATEGORY;
+    public static ModuleCategory USER_CATEGORY;
+    public static ModuleCategory STAFF_CATEGORY;
 
     private static int guiKey = 0;
 
@@ -53,8 +53,8 @@ public class Main extends LabyModAddon {
     @Override
     public void onEnable() {
         instance = this;
-        ModuleCategoryRegistry.loadCategory(TERRAMCNET_CATEGORY = new ModuleCategory("TerraMC", true, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
-        ModuleCategoryRegistry.loadCategory(TERRAMCNET_STAFF_CATEGORY = new ModuleCategory("TerraMC-Team", false, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
+        ModuleCategoryRegistry.loadCategory(USER_CATEGORY = new ModuleCategory("TerraMC", true, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
+        ModuleCategoryRegistry.loadCategory(STAFF_CATEGORY = new ModuleCategory("TerraMC-Team", false, new ControlElement.IconData(new ResourceLocation("terramc/textures/Module.png"))));
         this.getApi().registerServerSupport(this, new TerraMCnetServer());
         this.getApi().getEventManager().register(new ServerMessageListener());
 
