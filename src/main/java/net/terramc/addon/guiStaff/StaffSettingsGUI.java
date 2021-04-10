@@ -12,11 +12,14 @@ import java.io.IOException;
 
 public class StaffSettingsGUI extends GuiScreen {
 
-    public GuiScreen lastScreen;
+    GuiScreen lastScreen;
 
     public StaffSettingsGUI(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;
     }
+
+    String enabled = "§8[§a✔§8]";
+    String disabled = "§8[§c✘§8]";
 
     @Override
     public void initGui() {
@@ -27,13 +30,13 @@ public class StaffSettingsGUI extends GuiScreen {
         int xMiddle = width / 2;
 
         if(Main.isStaff()) {
-            this.buttonList.add(new GuiButton(1, xMiddle -120-80, 50, 120, 20, "§8» §4Reports anzeigen"));
-            this.buttonList.add(new GuiButton(2, xMiddle -60, 50, 120, 20, "§8» §eVanish-Status"));
-            this.buttonList.add(new GuiButton(3, xMiddle+80, 50, 120, 20, "§8» §4Aktueller Report"));
+            this.buttonList.add(new GuiButton(1, xMiddle -130-80, 50, 130, 20, "§8» §4Reports anzeigen " + (StaffSettings.showReports ? enabled : disabled)));
+            this.buttonList.add(new GuiButton(2, xMiddle -60, 50, 130, 20, "§8» §eVanish-Status " + (StaffSettings.showVanishStatus ? enabled : disabled)));
+            this.buttonList.add(new GuiButton(3, xMiddle+80, 50, 130, 20, "§8» §4Aktueller Report " + (StaffSettings.showCurrentReportData ? enabled : disabled)));
         }
 
         if(Main.isAdmin()) {
-            this.buttonList.add(new GuiButton(10, xMiddle -60, 90, 120, 20, "§8» §cServer-Status"));
+            this.buttonList.add(new GuiButton(10, xMiddle -60, 90, 130, 20, "§8» §cServer-Status " + (StaffSettings.showServerStatus ? enabled : disabled)));
         }
 
     }
@@ -60,7 +63,7 @@ public class StaffSettingsGUI extends GuiScreen {
     }
 
     public static void notify(String name, boolean status) {
-        String title = "§aEinstellungen";
+        String title = "§eEinstellungen";
         String enabled = "{type} §7wurde §aaktiviert§7.";
         String disabled = "{type} §7wurde §cdeaktiviert§7.";
 
@@ -84,10 +87,12 @@ public class StaffSettingsGUI extends GuiScreen {
                     StaffSettings.showReports = false;
                     notify("Reports anzeigen", false);
                     Main.getInstance().addConfigEntry("showReports", false);
+                    button.displayString = "§8» §4Reports anzeigen " + disabled;
                 } else {
                     StaffSettings.showReports = true;
                     notify("Reports anzeigen", true);
                     Main.getInstance().addConfigEntry("showReports", true);
+                    button.displayString = "§8» §4Reports anzeigen " + enabled;
                 }
                 break;
             case 2: // Vanish
@@ -95,10 +100,12 @@ public class StaffSettingsGUI extends GuiScreen {
                     StaffSettings.showVanishStatus = false;
                     notify("Vanish anzeigen", false);
                     Main.getInstance().addConfigEntry("showVanishStatus", false);
+                    button.displayString = "§8» §eVanish-Status " + disabled;
                 } else {
                     StaffSettings.showVanishStatus = true;
                     notify("Vanish anzeigen", true);
                     Main.getInstance().addConfigEntry("showVanishStatus", true);
+                    button.displayString = "§8» §eVanish-Status " + enabled;
                 }
                 break;
             case 3: // CurrentReport
@@ -106,10 +113,12 @@ public class StaffSettingsGUI extends GuiScreen {
                     StaffSettings.showCurrentReportData = false;
                     notify("Aktueller Report", false);
                     Main.getInstance().addConfigEntry("showCurrentReportData", false);
+                    button.displayString = "§8» §4Aktueller Report " + disabled;
                 } else {
                     StaffSettings.showCurrentReportData = true;
                     notify("Aktueller Report", true);
                     Main.getInstance().addConfigEntry("showCurrentReportData", true);
+                    button.displayString = "§8» §4Aktueller Report " + enabled;
                 }
                 break;
             case 10: // ServerStatus
@@ -117,10 +126,12 @@ public class StaffSettingsGUI extends GuiScreen {
                     StaffSettings.showServerStatus = false;
                     notify("ServerStatus", false);
                     Main.getInstance().addConfigEntry("showServerStatus", false);
+                    button.displayString = "§8» §cServer-Status " + disabled;
                 } else {
                     StaffSettings.showServerStatus = true;
                     notify("ServerStatus", true);
                     Main.getInstance().addConfigEntry("showServerStatus", true);
+                    button.displayString = "§8» §cServer-Status " + enabled;
                 }
                 break;
         }

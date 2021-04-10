@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class StatsGUI extends GuiScreen {
 
-    public GuiScreen lastScreen;
+    GuiScreen lastScreen;
 
     public StatsGUI(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;

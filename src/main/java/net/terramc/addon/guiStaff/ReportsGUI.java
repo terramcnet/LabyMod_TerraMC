@@ -16,9 +16,9 @@ import java.util.List;
 
 public class ReportsGUI extends GuiScreen {
 
-    private Scrollbar scrollbar = new Scrollbar(18);
+    Scrollbar scrollbar = new Scrollbar(18);
 
-    public GuiScreen lastScreen;
+    GuiScreen lastScreen;
 
     public ReportsGUI(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;

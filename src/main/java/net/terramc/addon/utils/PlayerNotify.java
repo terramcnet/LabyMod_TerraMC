@@ -53,7 +53,7 @@ public enum PlayerNotify {
         String[] splitted = message.split(";");
         for(String split : splitted) {
             String name = split.split("=")[0];
-            boolean status = Boolean.parseBoolean(split.split("=")[0]);
+            boolean status = Boolean.parseBoolean(split.split("=")[1]);
             if(getNotify(name) != null) {
                 getNotify(name).setEnabled(status);
             }

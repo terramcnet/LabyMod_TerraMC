@@ -16,9 +16,9 @@ import java.util.List;
 
 public class SupportsGUI extends GuiScreen {
 
-    private final Scrollbar scrollbar = new Scrollbar(18);
+    Scrollbar scrollbar = new Scrollbar(18);
 
-    public GuiScreen lastScreen;
+    GuiScreen lastScreen;
 
     public SupportsGUI(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;

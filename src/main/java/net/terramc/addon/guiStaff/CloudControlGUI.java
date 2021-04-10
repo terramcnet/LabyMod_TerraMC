@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class CloudControlGUI extends GuiScreen {
 
-    private GuiScreen lastScreen;
+    GuiScreen lastScreen;
 
     public CloudControlGUI(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;
@@ -123,7 +123,7 @@ public class CloudControlGUI extends GuiScreen {
         int middleX = width / 2;
         int middleY = height / 2;
 
-        if(!Main.isAdmin()) {
+        if(!Main.canControlCloud()) {
             drawUtils.drawCenteredString("§c§nDu bist kein Admin!", middleX, middleY);
             return;
         }

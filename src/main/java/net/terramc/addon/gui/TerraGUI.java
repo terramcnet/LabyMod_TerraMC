@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.terramc.addon.Main;
 import net.terramc.addon.guiStaff.CloudControlGUI;
+import net.terramc.addon.guiStaff.StaffGUI;
 import net.terramc.addon.guiStaff.StaffSettingsGUI;
 
 import java.io.IOException;

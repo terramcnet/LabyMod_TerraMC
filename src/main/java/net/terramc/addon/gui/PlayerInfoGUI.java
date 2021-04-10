@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class PlayerInfoGUI extends GuiScreen {
 
-    public GuiScreen lastScreen;
+    GuiScreen lastScreen;
 
     public PlayerInfoGUI(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;

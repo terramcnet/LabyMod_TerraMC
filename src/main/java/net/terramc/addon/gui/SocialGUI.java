@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class SocialGUI extends GuiScreen {
 
-    public GuiScreen lastScreen;
+    GuiScreen lastScreen;
 
     public SocialGUI(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;
