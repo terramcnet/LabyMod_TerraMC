@@ -189,11 +189,7 @@ public class Main extends LabyModAddon {
     }
 
     public static boolean canFullyControlCloud() {
-        String rank = TerraMCnetServer.getRank();
-        if(rank == null) {
-            return false;
-        }
-        return rank.equals("Inhaber") || rank.equals("Admin");
+        return isAdmin();
     }
 
     public static int getGuiKey() {
