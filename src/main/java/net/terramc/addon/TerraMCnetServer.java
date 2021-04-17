@@ -78,18 +78,21 @@ public class TerraMCnetServer extends Server {
 
             String nickPrefix = "▎▏ Nick » ";
             String nickPrefixOld = "•● Nick ┃ ";
+
             if(clean.startsWith(nickPrefix + "Du spielst nun als: ")) {
                 nickName = clean.replace(nickPrefix + "Du spielst nun als: ", "");
             }
             if(clean.startsWith(nickPrefixOld + "Du spielst nun als: ")) {
                 nickName = clean.replace(nickPrefixOld + "Du spielst nun als: ", "");
             }
+
             if(clean.startsWith(nickPrefix + "You are now playing as:")) {
                 nickName = clean.replace(nickPrefix + "You are now playing as: ", "");
             }
             if(clean.startsWith(nickPrefixOld + "You are now playing as:")) {
                 nickName = clean.replace(nickPrefixOld + "You are now playing as: ", "");
             }
+
             if(clean.startsWith(nickPrefix + "Dein Nickname wurde zurückgesetzt.") ||
                     clean.startsWith(nickPrefix + "Your nickname has been reset.")) {
                 nickName = null;
@@ -113,6 +116,24 @@ public class TerraMCnetServer extends Server {
                             }
                         }
                     }
+                }
+            }
+
+            String cloudPrefix = "▎▏ Cloud » ";
+
+            if(clean.startsWith(cloudPrefix + "Der Service ") & clean.contains(" wird gestoppt...")) {
+                if(StaffSettings.cloudMessageAsAchievement) {
+                    String service = clean.replace(cloudPrefix + "Der Service ", "").replace(" wird gestoppt...", "");
+                    LabyMod.getInstance().getGuiCustomAchievement().displayAchievement("§aCloud", "§7Cloud-Service §e" + service + " §cgestoppt§7...");
+                    return ChatDisplayAction.HIDE;
+                }
+            }
+
+            if(clean.startsWith(cloudPrefix + "Der Service ") & clean.contains(" wird gestartet...")) {
+                if(StaffSettings.cloudMessageAsAchievement) {
+                    String service = clean.replace(cloudPrefix + "Der Service ", "").replace(" wird gestartet...", "");
+                    LabyMod.getInstance().getGuiCustomAchievement().displayAchievement("§aCloud", "§7Cloud-Service §e" + service + " §agestartet§7...");
+                    return ChatDisplayAction.HIDE;
                 }
             }
 

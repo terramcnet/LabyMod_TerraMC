@@ -15,6 +15,8 @@ public class StaffSettings {
 
     public static boolean showServerStatus;
 
+    public static boolean cloudMessageAsAchievement;
+
     public static void loadStaffSettings() {
         JsonObject config = Main.getInstance().getConfigObject();
         showReports = !config.has("showReports") || config.get("showReports").getAsBoolean();
@@ -22,6 +24,7 @@ public class StaffSettings {
         showVanishStatus = !config.has("showVanishStatus") || config.get("showVanishStatus").getAsBoolean();
 
         showServerStatus = !config.has("showServerStatus") || config.get("showServerStatus").getAsBoolean();
+        cloudMessageAsAchievement = !config.has("cloudMessageAsAchievement") || config.get("cloudMessageAsAchievement").getAsBoolean();
     }
 
     /*public static List<SettingsElement> getStaffSettings() {

@@ -37,6 +37,7 @@ public class StaffSettingsGUI extends GuiScreen {
 
         if(Main.isAdmin()) {
             this.buttonList.add(new GuiButton(10, xMiddle -60, 90, 130, 20, "§8» §cServer-Status " + (StaffSettings.showServerStatus ? enabled : disabled)));
+            this.buttonList.add(new GuiButton(11, xMiddle - 150, 140, 300, 20, "§8» §cCloud-Benachrichtigungen als Achievement " + (StaffSettings.cloudMessageAsAchievement ? enabled : disabled)));
         }
 
     }
@@ -134,6 +135,18 @@ public class StaffSettingsGUI extends GuiScreen {
                     button.displayString = "§8» §cServer-Status " + enabled;
                 }
                 break;
+            case 11: // CloudMessage
+                if(StaffSettings.cloudMessageAsAchievement) {
+                    StaffSettings.cloudMessageAsAchievement = false;
+                    notify("Cloud-Benachrichtigungen als Achievement", false);
+                    Main.getInstance().addConfigEntry("cloudMessageAsAchievement", false);
+                    button.displayString = "§8» §cCloud-Benachrichtigungen als Achievement " + disabled;
+                } else {
+                    StaffSettings.cloudMessageAsAchievement = true;
+                    notify("Cloud-Benachrichtigungen als Achievement", true);
+                    Main.getInstance().addConfigEntry("cloudMessageAsAchievement", true);
+                    button.displayString = "§8» §cCloud-Benachrichtigungen als Achievement " + enabled;
+                }
         }
 
     }
