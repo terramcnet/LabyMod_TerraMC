@@ -91,7 +91,7 @@ public class StatsGUI extends GuiScreen {
         drawUtils.drawString("§aWins §8» §a" + PlayerStats.OneLine.wins, x -95, y2 +35);
         drawUtils.drawString("§cLoses §8» §c" + PlayerStats.OneLine.loses, x -95, y2 +45);
 
-        // Stats for KnockBackFFA
+        // Stats for XP
         drawUtils.drawItem(new ItemStack(Item.getItemById(384)), x2 -100, y2, "");
         drawUtils.drawString("§eXP§8:", x2 -100, y2 +20);
 
@@ -119,6 +119,16 @@ public class StatsGUI extends GuiScreen {
         drawUtils.drawString("§aKills §8» §a" + PlayerStats.FFA.kills, x -95, y3 +35);
         drawUtils.drawString("§cTode §8» §c" + PlayerStats.FFA.deaths, x -95, y3 +45);
         drawUtils.drawString("§eK/D §8» §e" + PlayerStats.FFA.kd, x -95, y3 +55);
+
+        // Stats for GunGame
+        drawUtils.drawItem(new ItemStack(Item.getItemById(271)), x2 -100, y3, "");
+        drawUtils.drawString("§6GunGame§8:", x2 -100, y3 +20);
+
+        drawUtils.drawString("§aKills §8» §a" + PlayerStats.GunGame.kills, x2 -95, y3 +35);
+        drawUtils.drawString("§cTode §8» §c" + PlayerStats.GunGame.deaths, x2 -95, y3 +45);
+        drawUtils.drawString("§eK/D §8» §e" + PlayerStats.GunGame.kd, x2 -95, y3 +55);
+        drawUtils.drawString("§ePunkte §8» §e" + PlayerStats.GunGame.points, x2 -95, y3 +65);
+        drawUtils.drawString("§eLevel-Rekord §8» §e" + PlayerStats.GunGame.levelRecord, x2 -95, y3 +75);
 
         // Stats for WaterFightFFA
         drawUtils.drawItem(new ItemStack(Item.getItemById(326)), x3 -100, y3, "");

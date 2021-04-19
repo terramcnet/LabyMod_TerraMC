@@ -55,4 +55,12 @@ public class PlayerStats {
         public static int points = 0;
     }
 
+    public static class GunGame {
+        public static int kills = 0;
+        public static int deaths = 0;
+        public static double kd = 0.0;
+        public static int points = 0;
+        public static int levelRecord = 0;
+    }
+
 }

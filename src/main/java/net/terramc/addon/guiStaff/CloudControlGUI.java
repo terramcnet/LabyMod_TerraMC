@@ -31,81 +31,87 @@ public class CloudControlGUI extends GuiScreen {
             int middleX = width / 2;
 
             // Proxy
-            this.buttonList.add(new GuiButton(1, middleX - 30, 90, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(1, middleX - 30, 60, 60, 20, "§cStoppen"));
 
             // Lobby - Stop
-            this.buttonList.add(new GuiButton(3, 150 -65, 140, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(3, 150 -65, 110, 60, 20, "§cStoppen"));
 
             // PremiumLobby - Stop
-            this.buttonList.add(new GuiButton(5, middleX -65, 140, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(5, middleX -65, 110, 60, 20, "§cStoppen"));
 
             // SilentLobby - Stop
-            this.buttonList.add(new GuiButton(7, width - 150 -65, 140, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(7, width - 150 -65, 110, 60, 20, "§cStoppen"));
 
             // TDM-2x1 - Stop
-            this.buttonList.add(new GuiButton(9, 150 -65, 190, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(9, 150 -65, 160, 60, 20, "§cStoppen"));
 
             // BuildFFA - Stop
-            this.buttonList.add(new GuiButton(11, middleX -65, 190, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(11, middleX -65, 160, 60, 20, "§cStoppen"));
 
             // XP - Stop
-            this.buttonList.add(new GuiButton(13, width - 150 -65, 190, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(13, width - 150 -65, 160, 60, 20, "§cStoppen"));
 
             // TDM-2x2 - Stop
-            this.buttonList.add(new GuiButton(15, 150 -65, 240, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(15, 150 -65, 210, 60, 20, "§cStoppen"));
 
             // FFA - Stop
-            this.buttonList.add(new GuiButton(17, middleX -65, 240, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(17, middleX -65, 210, 60, 20, "§cStoppen"));
 
             // OneLine - Stop
-            this.buttonList.add(new GuiButton(19, width - 150 -65, 240, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(19, width - 150 -65, 210, 60, 20, "§cStoppen"));
 
             // TDM-2x4 - Stop
-            this.buttonList.add(new GuiButton(21, 150 -65, 290, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(21, 150 -65, 260, 60, 20, "§cStoppen"));
 
             // WaterFightFFA - Stop
-            this.buttonList.add(new GuiButton(23, middleX -65, 290, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(23, middleX -65, 260, 60, 20, "§cStoppen"));
 
             // KnockBackFFA - Stop
-            this.buttonList.add(new GuiButton(25, width - 150 -65, 290, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(25, width - 150 -65, 260, 60, 20, "§cStoppen"));
+
+            // GunGame - Stop
+            this.buttonList.add(new GuiButton(27, middleX -65, 310, 60, 20, "§cStoppen"));
 
             if(Main.canFullyControlCloud()) {
 
                 // Lobby - Maintenance
-                this.buttonList.add(new GuiButton(4, 150 +5, 140, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(4, 150 +5, 110, 60, 20, "§6Wartungen"));
 
                 // PremiumLobby - Maintenance
-                this.buttonList.add(new GuiButton(6, middleX +5, 140, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(6, middleX +5, 110, 60, 20, "§6Wartungen"));
 
                 // SilentLobby - Maintenance
-                this.buttonList.add(new GuiButton(8, width - 150 +5, 140, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(8, width - 150 +5, 110, 60, 20, "§6Wartungen"));
 
                 // TDM-2x1 - Maintenance
-                this.buttonList.add(new GuiButton(10, 150 +5, 190, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(10, 150 +5, 160, 60, 20, "§6Wartungen"));
 
                 // BuildFFA - Maintenance
-                this.buttonList.add(new GuiButton(12, middleX +5, 190, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(12, middleX +5, 160, 60, 20, "§6Wartungen"));
 
                 // XP - Maintenance
-                this.buttonList.add(new GuiButton(14, width - 150 +5, 190, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(14, width - 150 +5, 160, 60, 20, "§6Wartungen"));
 
                 // TDM-2x2 - Maintenance
-                this.buttonList.add(new GuiButton(16, 150 +5, 240, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(16, 150 +5, 210, 60, 20, "§6Wartungen"));
 
                 // FFA - Maintenance
-                this.buttonList.add(new GuiButton(18, middleX +5, 240, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(18, middleX +5, 210, 60, 20, "§6Wartungen"));
 
                 // OneLine - Maintenance
-                this.buttonList.add(new GuiButton(20, width - 150 +5, 240, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(20, width - 150 +5, 210, 60, 20, "§6Wartungen"));
 
                 // TDM-2x4 - Maintenance
-                this.buttonList.add(new GuiButton(22, 150 +5, 290, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(22, 150 +5, 260, 60, 20, "§6Wartungen"));
 
                 // WaterFightFFA - Maintenance
-                this.buttonList.add(new GuiButton(24, middleX +5, 290, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(24, middleX +5, 260, 60, 20, "§6Wartungen"));
 
                 // KnockBackFFA - Maintenance
-                this.buttonList.add(new GuiButton(26, width - 150 +5, 290, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(26, width - 150 +5, 260, 60, 20, "§6Wartungen"));
+
+                // GunGame - Maintenance
+                this.buttonList.add(new GuiButton(28, middleX +5, 310, 60, 20, "§6Wartungen"));
 
             }
 
@@ -128,41 +134,45 @@ public class CloudControlGUI extends GuiScreen {
             return;
         }
 
-        drawUtils.drawCenteredString("§8« §aCloud-Steuerung §8»", middleX, 20, 1.5);
+        drawUtils.drawCenteredString("§8« §aCloud-Steuerung §8»", middleX, 10, 1.5);
 
-        drawUtils.drawCenteredString("§a§lProxy", middleX, 80);
+        drawUtils.drawCenteredString("§a§lProxy", middleX, 50);
 
         // Row #1
 
-        drawUtils.drawCenteredString("§7Lobby", 150, 130);
+        drawUtils.drawCenteredString("§7Lobby", 150, 100);
 
-        drawUtils.drawCenteredString("§6PremiumLobby", middleX, 130);
+        drawUtils.drawCenteredString("§6PremiumLobby", middleX, 100);
 
-        drawUtils.drawCenteredString("§4SilentLobby", width - 150, 130);
+        drawUtils.drawCenteredString("§4SilentLobby", width - 150, 100);
 
         // Row #2
 
-        drawUtils.drawCenteredString("§4TDM-2x1", 150, 180);
+        drawUtils.drawCenteredString("§4TDM-2x1", 150, 150);
 
-        drawUtils.drawCenteredString("§eBuildFFA", middleX, 180);
+        drawUtils.drawCenteredString("§eBuildFFA", middleX, 150);
 
-        drawUtils.drawCenteredString("§eXP", width - 150, 180);
+        drawUtils.drawCenteredString("§eXP", width - 150, 150);
 
         // Row #3
 
-        drawUtils.drawCenteredString("§4TDM-2x2", 150, 230);
+        drawUtils.drawCenteredString("§4TDM-2x2", 150, 200);
 
-        drawUtils.drawCenteredString("§cFFA", middleX, 230);
+        drawUtils.drawCenteredString("§cFFA", middleX, 200);
 
-        drawUtils.drawCenteredString("§cOneLine", width - 150, 230);
+        drawUtils.drawCenteredString("§cOneLine", width - 150, 200);
 
         // Row #4
 
-        drawUtils.drawCenteredString("§4TDM-2x4", 150, 280);
+        drawUtils.drawCenteredString("§4TDM-2x4", 150, 250);
 
-        drawUtils.drawCenteredString("§9WaterFightFFA", middleX, 280);
+        drawUtils.drawCenteredString("§9WaterFightFFA", middleX, 250);
 
-        drawUtils.drawCenteredString("§6KnockBackFFA", width - 150, 280);
+        drawUtils.drawCenteredString("§6KnockBackFFA", width - 150, 250);
+
+        // Row #5
+
+        drawUtils.drawCenteredString("§6GunGame", middleX, 300);
 
     }
 
@@ -350,6 +360,20 @@ public class CloudControlGUI extends GuiScreen {
             case 26: {
                 JsonObject object = new JsonObject();
                 object.addProperty("group", "KBFFA");
+                Main.sendMessageToServer(messageKeyMain, object);
+            }
+                break;
+
+            // GunGame
+            case 27: {
+                JsonObject object = new JsonObject();
+                object.addProperty("group", "GunGame");
+                Main.sendMessageToServer(messageKeyStop, object);
+            }
+                break;
+            case 28: {
+                JsonObject object = new JsonObject();
+                object.addProperty("group", "GunGame");
                 Main.sendMessageToServer(messageKeyMain, object);
             }
                 break;

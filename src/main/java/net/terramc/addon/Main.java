@@ -39,7 +39,7 @@ public class Main extends LabyModAddon {
 
     public static boolean enabled;
 
-    public static String addonVersion = "2.9";
+    public static String addonVersion = "3.0";
 
     @Override
     public LabyModAPI getApi() {

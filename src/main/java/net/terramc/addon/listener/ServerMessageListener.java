@@ -168,6 +168,14 @@ public class ServerMessageListener implements ServerMessageEvent {
                     PlayerStats.WaterFFA.points = Integer.parseInt(raw.split(";")[4]);
                 }
 
+                if(type.equalsIgnoreCase("GunGame")) {
+                    PlayerStats.GunGame.kills = Integer.parseInt(raw.split(";")[1]);
+                    PlayerStats.GunGame.deaths = Integer.parseInt(raw.split(";")[2]);
+                    PlayerStats.GunGame.kd = Double.parseDouble(raw.split(";")[3]);
+                    PlayerStats.GunGame.points = Integer.parseInt(raw.split(";")[4]);
+                    PlayerStats.GunGame.levelRecord = Integer.parseInt(raw.split(";")[5]);
+                }
+
             }
 
         }
