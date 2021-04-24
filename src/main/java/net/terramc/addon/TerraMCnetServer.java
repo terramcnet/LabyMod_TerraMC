@@ -269,8 +269,11 @@ public class TerraMCnetServer extends Server {
         joins = value;
     }
 
+    public static boolean updateMessageSent = false;
+
     public static void checkUpdate(String version) {
-        if(!version.equals(Main.addonVersion)) {
+        if(!version.equals(Main.addonVersion) & !updateMessageSent) {
+            updateMessageSent = true;
             LabyMod labyMod = LabyMod.getInstance();
             labyMod.displayMessageInChat("§a§lTerraMC §7§lLabyMod-Addon");
             labyMod.displayMessageInChat("§7Es ist eine neue Version §8[§e" + version + "§8] §7verfügbar!");

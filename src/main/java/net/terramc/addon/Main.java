@@ -10,6 +10,8 @@ import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.*;
 import net.labymod.utils.Material;
 import net.minecraft.util.ResourceLocation;
+import net.terramc.addon.elements.CustomBooleanElement;
+import net.terramc.addon.elements.CustomKeyElement;
 import net.terramc.addon.listener.KeyboardListener;
 import net.terramc.addon.listener.ServerMessageListener;
 import net.terramc.addon.modules.CoinsModule;
@@ -74,6 +76,7 @@ public class Main extends LabyModAddon {
         this.getApi().getEventManager().registerOnJoin(serverData -> enabled = serverData.getIp().equalsIgnoreCase("terramc.net"));
         this.getApi().getEventManager().registerOnQuit(serverData -> {
             if(serverData != null) {
+                TerraMCnetServer.updateMessageSent = false;
                 TerraMCnetServer.getReports().clear();
                 TerraMCnetServer.getSupports().clear();
                 TerraMCnetServer.resetValues();
@@ -106,50 +109,82 @@ public class Main extends LabyModAddon {
 
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §7GUI"));
 
-        list.add(new KeyElement("§8» §fTerra-GUI", new ControlElement.IconData(new ResourceLocation("labymod/textures/settings/category/ingame_gui.png")), guiKey, integer -> {
+        /*list.add(new KeyElement("§8» §fTerra-GUI", new ControlElement.IconData(new ResourceLocation("labymod/textures/settings/category/ingame_gui.png")), guiKey, integer -> {
             if(integer == -1) {
                 return;
             }
             guiKey = integer;
             Main.this.getConfig().addProperty("guiKey", integer);
             Main.this.saveConfig();
-        }));
+        }));*/
+
+        list.add(new CustomKeyElement("§8» §fTerra-GUI", new ControlElement.IconData(new ResourceLocation("labymod/textures/settings/category/ingame_gui.png")), guiKey, integer -> {
+            if(integer == -1) {
+                return;
+            }
+            guiKey = integer;
+            Main.this.getConfig().addProperty("guiKey", integer);
+            Main.this.saveConfig();
+        }, null, "§7Taste zum öffnen", "§7der Terra-GUI."));
 
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §7Allgemeine Funktionen"));
 
-        list.add(new BooleanElement("§8» §fPrivate Nachrichten filtern", new ControlElement.IconData(Material.SIGN), status -> {
+        list.add(new CustomBooleanElement("§8» §fPrivate Nachrichten filtern", new ControlElement.IconData(Material.SIGN), status -> {
+            filterPrivateMessages = status;
+            addConfigEntry("filterPrivateMessages", status);
+        }, filterPrivateMessages, null, "§7Zeigt Private Nachrichten", "§7im Second-Chat."));
+
+        /*list.add(new BooleanElement("§8» §fPrivate Nachrichten filtern", new ControlElement.IconData(Material.SIGN), status -> {
             filterPrivateMessages = status;
             Main.this.getConfig().addProperty("filterPrivateMessages", status);
             Main.this.saveConfig();
-        }, filterPrivateMessages));
+        }, filterPrivateMessages));*/
 
-        list.add(new BooleanElement("§8» §fGame-Rang anzeigen", new ControlElement.IconData(Material.DIAMOND_SWORD), status -> {
+        list.add(new CustomBooleanElement("§8» §fPlatzierung anzeigen", new ControlElement.IconData(Material.DIAMOND_SWORD), status -> {
+            displayGameRank = status;
+            addConfigEntry("displayGameRank", status);
+        }, displayGameRank, null, "§7Zeigt deine aktuelle", "§7Platzierung im Spielmodus an."));
+
+        /*list.add(new BooleanElement("§8» §fGame-Rang anzeigen", new ControlElement.IconData(Material.DIAMOND_SWORD), status -> {
             displayGameRank = status;
             Main.this.getConfig().addProperty("displayGameRank", status);
             Main.this.saveConfig();
-        }, displayGameRank));
+        }, displayGameRank));*/
 
-        list.add(new BooleanElement("§8» §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), status -> {
+        list.add(new CustomBooleanElement("§8» §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), status -> {
+            displayCoins = status;
+            addConfigEntry("displayCoins", status);
+        }, displayCoins, null, "§7Zeigt deine aktuellen", "§7Coins in der GUI an."));
+
+        /*list.add(new BooleanElement("§8» §fCoins anzeigen", new ControlElement.IconData(Material.GOLD_INGOT), status -> {
             displayCoins = status;
             Main.this.getConfig().addProperty("displayCoins", status);
             Main.this.saveConfig();
-        }, displayCoins));
+        }, displayCoins));*/
 
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §6Premium Funktionen"));
 
-        list.add(new BooleanElement("§8» §eAutoGG", new ControlElement.IconData(Material.NETHER_STAR), status -> {
+        /*list.add(new BooleanElement("§8» §eAutoGG", new ControlElement.IconData(Material.NETHER_STAR), status -> {
             autoGGEnabled = status;
             Main.this.getConfig().addProperty("autoGG", status);
             Main.this.saveConfig();
-        }, autoGGEnabled));
+        }, autoGGEnabled));*/
+
+        list.add(new CustomBooleanElement("§8» §eAutoGG", new ControlElement.IconData(Material.NETHER_STAR), status -> {
+
+        }, autoGGEnabled, null, "§7Aktivert/Deaktiviert die" , "§7AutoGG-Funktion."));
 
         list.add(new HeaderElement("§7§l§o▎§8§l§o▏ §5VIP Funktionen"));
 
-        list.add(new BooleanElement("§8» §dNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), status -> {
+        /*list.add(new BooleanElement("§8» §dNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), status -> {
             displayNickName = status;
             Main.this.getConfig().addProperty("displayNickName", status);
             Main.this.saveConfig();
-        }, displayNickName));
+        }, displayNickName));*/
+
+        list.add(new CustomBooleanElement("§8» §dNick anzeigen", new ControlElement.IconData(Material.NAME_TAG), status -> {
+
+        }, displayNickName, null, "§7Zeigt deinen aktuellen", "§7Nickname in der GUI an."));
 
     }
 
