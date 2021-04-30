@@ -14,10 +14,8 @@ import net.terramc.addon.elements.CustomBooleanElement;
 import net.terramc.addon.elements.CustomKeyElement;
 import net.terramc.addon.listener.KeyboardListener;
 import net.terramc.addon.listener.ServerMessageListener;
-import net.terramc.addon.modules.CoinsModule;
+import net.terramc.addon.modules.*;
 import net.terramc.addon.modulesStaff.*;
-import net.terramc.addon.modules.GameRankModule;
-import net.terramc.addon.modules.NickModule;
 import org.lwjgl.input.Keyboard;
 
 import java.util.List;

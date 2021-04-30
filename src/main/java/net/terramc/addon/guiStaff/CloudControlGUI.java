@@ -70,7 +70,10 @@ public class CloudControlGUI extends GuiScreen {
             this.buttonList.add(new GuiButton(25, width - 150 -65, 260, 60, 20, "§cStoppen"));
 
             // GunGame - Stop
-            this.buttonList.add(new GuiButton(27, middleX -65, 310, 60, 20, "§cStoppen"));
+            this.buttonList.add(new GuiButton(27, 150 -65, 310, 60, 20, "§cStoppen"));
+
+            // TheLab - Stop
+            this.buttonList.add(new GuiButton(29, width - 150 -65, 310, 60, 20, "§cStoppen"));
 
             if(Main.canFullyControlCloud()) {
 
@@ -111,7 +114,10 @@ public class CloudControlGUI extends GuiScreen {
                 this.buttonList.add(new GuiButton(26, width - 150 +5, 260, 60, 20, "§6Wartungen"));
 
                 // GunGame - Maintenance
-                this.buttonList.add(new GuiButton(28, middleX +5, 310, 60, 20, "§6Wartungen"));
+                this.buttonList.add(new GuiButton(28, 150 +5, 310, 60, 20, "§6Wartungen"));
+
+                // TheLab - Maintenance
+                this.buttonList.add(new GuiButton(30, width - 150 +5, 310, 60, 20, "§6Wartungen"));
 
             }
 
@@ -172,7 +178,9 @@ public class CloudControlGUI extends GuiScreen {
 
         // Row #5
 
-        drawUtils.drawCenteredString("§6GunGame", middleX, 300);
+        drawUtils.drawCenteredString("§6GunGame", 150, 300);
+
+        drawUtils.drawCenteredString("§bTheLab", width - 150, 300);
 
     }
 
@@ -374,6 +382,20 @@ public class CloudControlGUI extends GuiScreen {
             case 28: {
                 JsonObject object = new JsonObject();
                 object.addProperty("group", "GunGame");
+                Main.sendMessageToServer(messageKeyMain, object);
+            }
+                break;
+
+            // TheLab
+            case 29: {
+                JsonObject object = new JsonObject();
+                object.addProperty("group", "TheLab");
+                Main.sendMessageToServer(messageKeyStop, object);
+            }
+                break;
+            case 30: {
+                JsonObject object = new JsonObject();
+                object.addProperty("group", "TheLab");
                 Main.sendMessageToServer(messageKeyMain, object);
             }
                 break;
