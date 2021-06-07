@@ -3,7 +3,8 @@ package net.terramc.addon.gui;
 import net.labymod.main.LabyMod;
 import net.labymod.utils.DrawUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import net.terramc.addon.Main;
 import net.terramc.addon.guiStaff.CloudControlGUI;
 import net.terramc.addon.guiStaff.StaffGUI;
@@ -98,5 +99,4 @@ public class TerraGUI extends GuiScreen {
     public void updateScreen() {
         super.updateScreen();
     }
-
 }
